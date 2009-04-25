@@ -24,8 +24,13 @@ class Evinrude
     $vroot=realpath($this->basepath);
     $path=$this->basepath.$path;
     $path_php=$path.'.php';
+    $path_html=$path.'.html';
     //Check we're not going out our site_data folder
-    if(!$real_path=realpath($path))$real_path=realpath($path_php);
+    if(!$real_path=realpath($path)){
+      if(!$real_path=realpath($path_php)){
+        $real_path=realpath($path_html);
+      }
+    }
     if(substr($real_path,0,strlen($vroot))!=$vroot){
       return false;
     }else{
@@ -36,8 +41,11 @@ class Evinrude
   function load_content($content)
   {
     if(file_exists($this->basepath.$content.'.php')){
-      //I'm addressing a file?
+      //I'm addressing a php file?
       require_once($this->basepath.$content.'.php');
+    }elseif(file_exists($this->basepath.$content.'.html')){
+      //I'm addressing an html file?
+      require_once($this->basepath.$content.'.html');
     }elseif(file_exists($this->basepath.$content.'/index.php')){
       //I'm addressing a subdir?
       require_once($this->basepath.$content.'/index.php');
