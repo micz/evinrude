@@ -9,33 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-
-class Main extends Controller {
-
-  private $view_data;
-  private $incoming_path;
-
-  function  __construct() {
-		parent::__construct();
-    $this->evinrude->basepath=$this->config->item('evn_site_data_folder');
-    $this->view_data=array();
-    $this->view_data['error']=0;
-    $this->view_data['content']='';
-	}
-	
-	function _remap()
-  {
-    $this->incoming_path=$this->uri->uri_string();
-    $this->index();
-  }
-	
-	function index()
-	{
-    if($this->evinrude->check_incoming_path($this->incoming_path)){
-      $this->view_data['content']=$this->incoming_path;
-    }else{
-      $this->view_data['error']=1;
-    }
-		$this->load->view('main',$this->view_data);
-	}
-}
+?>
+<p><br/>2009 &copy; <a href="http://code.google.com/evinrude/">Evinrude</a><br/>Page rendered in {elapsed_time} seconds</p>
