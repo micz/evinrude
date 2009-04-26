@@ -12,11 +12,13 @@
 
 class Evinrude
 {
-  var $basepath;
   private $CI;
+  var $basepath;
+  var $template;
   
   function  __construct() {
     $this->CI=&get_instance();
+    $this->template=array();
   }
 
   function check_incoming_path($path)
@@ -41,22 +43,23 @@ class Evinrude
   function load_content($content)
   {
     if(strpos($content,'/evn__') === 0){
-      //Cannot load directly a template base file
+      //We cannot load directly a template base file
       $this->CI->load->view('error');
-      return;
+      return false;
     }
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
-      require_once($this->basepath.$content.'.php');
+      return get_include_contents($this->basepath.$content.'.php');
     }elseif(file_exists($this->basepath.$content.'.html')){
       //I'm addressing an html file?
-      require_once($this->basepath.$content.'.html');
+      return get_include_contents($this->basepath.$content.'.html');
     }elseif(file_exists($this->basepath.$content.'/index.php')){
       //I'm addressing a subdir?
-      require_once($this->basepath.$content.'/index.php');
+      return get_include_contents($this->basepath.$content.'/index.php');
     }else{
       //Sorry nothing found
       $this->CI->load->view('error');
+      return false;
     }
   }
 }

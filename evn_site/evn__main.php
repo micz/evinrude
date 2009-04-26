@@ -9,10 +9,12 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+//Preload the user content, so we can set the needed template vars
+$ext_content=load_content($content);
 ?>
 <html>
 <head>
-<title>Welcome to Evinrude</title>
+  <title>Welcome to Evinrude<?=get_template('title')?></title>
 <?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>graphic/style.css" media="screen" />
 </head>
@@ -21,7 +23,8 @@
 <p><?if($error){
   $this->load->view('error');
 }else{
-  load_content($content);
+  //output the user content
+  echo $ext_content;
 }
 ?></p>
 <?$this->load->view('footer');?>

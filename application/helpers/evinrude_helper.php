@@ -13,6 +13,35 @@
 function load_content($content)
 {
   $CI=&get_instance();
-  $CI->evinrude->load_content($content);
+  return $CI->evinrude->load_content($content);
+}
+
+function set_template($placeholder,$value)
+{
+  $CI=&get_instance();
+  $CI->evinrude->template[$placeholder]=$value;
+}
+
+function get_include_contents($filename)
+{
+  if(is_file($filename)){
+    ob_start();
+    @include($filename);
+    $contents=ob_get_contents();
+    ob_end_clean();
+    return $contents;
+  }
+  return false;
+}
+
+function get_template($placeholder,$default_value='')
+{
+  $CI=&get_instance();
+  if(array_key_exists($placeholder,$CI->evinrude->template)){
+    return $CI->evinrude->template[$placeholder];
+  }else{
+    return $default_value;
+  }
+
 }
 ?>

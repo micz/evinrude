@@ -9,6 +9,7 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+set_template('title',' :: This is a php file using template vars!')
 ?>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
 <?= '<p>I\'m a php file!</p>'?>
