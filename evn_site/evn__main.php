@@ -20,7 +20,8 @@ $ext_content=load_content($content);
 </head>
 <body>
 <h1>Welcome to Evinrude!</h1>
-<p><?if($error){
+<p><?
+if($error){
   $this->load->view('error');
 }else{
   //output the user content

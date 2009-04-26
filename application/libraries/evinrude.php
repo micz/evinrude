@@ -52,7 +52,8 @@ class Evinrude
       return get_include_contents($this->basepath.$content.'.php');
     }elseif(file_exists($this->basepath.$content.'.html')){
       //I'm addressing an html file?
-      return get_include_contents($this->basepath.$content.'.html');
+      //Parse the html file for template vars and translate them to php
+      return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'.html'));
     }elseif(file_exists($this->basepath.$content.'/index.php')){
       //I'm addressing a subdir?
       return get_include_contents($this->basepath.$content.'/index.php');
@@ -75,6 +76,31 @@ class Evinrude
     }else{
       return $default_value;
     }
+  }
+
+  private function parse_html_template_vars($html)
+  {
+    //find the var code
+    $start_tag='<evn:vars>';
+    $end_tag='</evn:vars>';
+    $start_tag_pos=strpos($html,$start_tag);
+    $end_tag_pos=strpos($html,$end_tag,$start_tag_pos);
+    $var_code=substr($html,$start_tag_pos,$end_tag_pos-$start_tag_pos);
+    //strip it from the html
+    $html=substr_replace($html,'',$start_tag_pos, $end_tag_pos-$start_tag_pos);
+    $lines=explode("\n",$var_code);
+    //get the template vars
+    $current_line='';
+    $line_count=count($lines);
+    $i= 0;
+    for($i=0;$i<$line_count;$i++){
+      $current_line=trim($lines[$i]," \r\n\t");
+      $equal_sign_pos=strpos($current_line,'=');
+      $var_name=substr($current_line,0,$equal_sign_pos);
+      $var_value=substr($current_line,$equal_sign_pos+1);
+      $this->set_template_var($var_name,$var_value);
+    }
+    return $html;
   }
 }
 ?>
