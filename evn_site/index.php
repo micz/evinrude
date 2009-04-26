@@ -12,4 +12,4 @@
 ?>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
 <?='<p>Wow! I\'m executing a php script in the theme file!</p>'?>
-<p>Go to a <a href="<?=site_url('subdir')?>">subdir</a>, to a php <a href="<?=site_url('a_file')?>">single file</a> or to an html <a href="<?=site_url('an_html_file')?>">single file</a>.</p>
+<p>Go to a <a href="<?=site_url('subdir')?>">subdir</a> with an index.php, to a <a href="<?=site_url('subdir2')?>">subdir</a> with an index.html, to a php <a href="<?=site_url('a_file')?>">single file</a> or to an html <a href="<?=site_url('an_html_file')?>">single file</a>.</p>

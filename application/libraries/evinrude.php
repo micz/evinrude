@@ -55,8 +55,11 @@ class Evinrude
       //Parse the html file for template vars and translate them to php
       return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'.html'));
     }elseif(file_exists($this->basepath.$content.'/index.php')){
-      //I'm addressing a subdir?
+      //I'm addressing a subdir? Check an index.php...
       return get_include_contents($this->basepath.$content.'/index.php');
+    }elseif(file_exists($this->basepath.$content.'/index.html')){
+      //... or check an index.html (and parse the template vars)
+      return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'/index.html'));
     }else{
       //Sorry nothing found
       $this->CI->load->view('error');
@@ -80,19 +83,23 @@ class Evinrude
 
   private function parse_html_template_vars($html)
   {
-    //find the var code
+    //Find the template vars code
     $start_tag='<evn:vars>';
     $end_tag='</evn:vars>';
     $start_tag_pos=strpos($html,$start_tag);
+    //No starting tag? Exit the function
+    if($start_tag_pos===false) return $html;
     $end_tag_pos=strpos($html,$end_tag,$start_tag_pos);
+    //No ending tag? It's better to do nothing, so exit the function
+    if($end_tag_pos===false) return $html;
     $var_code=substr($html,$start_tag_pos,$end_tag_pos-$start_tag_pos);
-    //strip it from the html
+    //Strip it from the html
     $html=substr_replace($html,'',$start_tag_pos, $end_tag_pos-$start_tag_pos);
     $lines=explode("\n",$var_code);
-    //get the template vars
+    //Get the template vars
     $current_line='';
     $line_count=count($lines);
-    $i= 0;
+    $i=0;
     for($i=0;$i<$line_count;$i++){
       $current_line=trim($lines[$i]," \r\n\t");
       $equal_sign_pos=strpos($current_line,'=');
