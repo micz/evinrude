@@ -16,12 +16,6 @@ function load_content($content)
   return $CI->evinrude->load_content($content);
 }
 
-function set_template($placeholder,$value)
-{
-  $CI=&get_instance();
-  $CI->evinrude->template[$placeholder]=$value;
-}
-
 function get_include_contents($filename)
 {
   if(is_file($filename)){
@@ -34,14 +28,15 @@ function get_include_contents($filename)
   return false;
 }
 
-function get_template($placeholder,$default_value='')
+function set_template_var($placeholder,$value)
 {
   $CI=&get_instance();
-  if(array_key_exists($placeholder,$CI->evinrude->template)){
-    return $CI->evinrude->template[$placeholder];
-  }else{
-    return $default_value;
-  }
+  $CI->evinrude->set_template_var($placeholder,$value);
+}
 
+function get_template_var($placeholder,$default_value='')
+{
+  $CI=&get_instance();
+  return $CI->evinrude->get_template_var($placeholder,$default_value);
 }
 ?>

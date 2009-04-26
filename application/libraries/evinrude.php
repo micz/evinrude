@@ -13,8 +13,8 @@
 class Evinrude
 {
   private $CI;
+  private $template;
   var $basepath;
-  var $template;
   
   function  __construct() {
     $this->CI=&get_instance();
@@ -60,6 +60,20 @@ class Evinrude
       //Sorry nothing found
       $this->CI->load->view('error');
       return false;
+    }
+  }
+
+  function set_template_var($placeholder,$value)
+  {
+    $this->template[$placeholder]=$value;
+  }
+
+  function get_template_var($placeholder,$default_value='')
+  {
+    if(array_key_exists($placeholder,$this->template)){
+      return $this->template[$placeholder];
+    }else{
+      return $default_value;
     }
   }
 }
