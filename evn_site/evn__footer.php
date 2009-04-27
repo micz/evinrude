@@ -10,4 +10,4 @@
 *
 */
 ?>
-<p><br/>2009 &copy; <a href="http://code.google.com/evinrude/">Evinrude</a><br/>Page rendered in {elapsed_time} seconds</p>
+<p><br/>Powered by <a href="http://code.google.com/evinrude/">Evinrude</a> v<?=$this->evinrude->get_version();?><br/>Page rendered in {elapsed_time} seconds</p>

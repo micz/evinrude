@@ -14,13 +14,20 @@ class Evinrude
 {
   private $CI;
   private $template;
+  private $version='1.0-alpha';
   var $basepath;
   var $current_content;
   
-  function  __construct() {
+  function  __construct()
+  {
     $this->CI=&get_instance();
     $this->template=array();
     $this->current_content='';
+  }
+
+  function get_version()
+  {
+    return $this->version;
   }
 
   function check_incoming_path($path)
