@@ -9,33 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-//Preload the user content, so we can set the needed template vars
-$ext_content=load_content($content);
+require_once($this->config->item('evn_site_data_folder').'/evn__sidebar.php');
 ?>
-<html>
-<head>
-<title>Welcome to Evinrude<?=get_template_var('title')?></title>
-<?=meta('Content-type','text/html; charset=utf-8','equiv');?>
-<link rel="stylesheet" type="text/css" href="<?=base_url()?>graphic/style.css" media="screen" />
-</head>
-<body>
-<div id="wrapper">
-<h1>Welcome to Evinrude!</h1>
-<div id="left">
-<?$this->load->view('sidebar')?>
-</div><div id="main">
-<p><?
-if($error){
-  $this->load->view('error');
-}else{
-  //output the user content
-  echo $ext_content;
-}
-?></p>
-</div>
-<div id="footer">
-<?$this->load->view('footer');?>
-</div>
-</div>
-</body>
-</html>
