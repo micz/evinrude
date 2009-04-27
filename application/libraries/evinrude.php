@@ -15,10 +15,12 @@ class Evinrude
   private $CI;
   private $template;
   var $basepath;
+  var $current_content;
   
   function  __construct() {
     $this->CI=&get_instance();
     $this->template=array();
+    $this->current_content='';
   }
 
   function check_incoming_path($path)
@@ -47,6 +49,7 @@ class Evinrude
       $this->CI->load->view('error');
       return false;
     }
+    if(strlen($content)>0)$this->current_content=substr($content,1);
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
       return get_include_contents($this->basepath.$content.'.php');

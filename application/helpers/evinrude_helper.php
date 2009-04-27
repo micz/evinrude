@@ -44,4 +44,17 @@ function evn_img_url($img_name)
 {
   return base_url().'graphic/img/'.$img_name;
 }
+
+function evn_active_page($link_name='',$only_last_level=0)
+{
+  $CI=&get_instance();
+  $content_array=explode('/',$CI->evinrude->current_content);
+  if(!$only_last_level&&(in_array($link_name,$content_array))){
+    return true;
+  }elseif($only_last_level&&($content_array[count($content_array)-1]==$link_name)){
+    return true;
+  }else{
+    return false;
+  }
+}
 ?>

@@ -11,9 +11,10 @@
 */
 ?>
 <ul>
-  <li><a href="<?=site_url()?>">main</a></li>
-  <li><a href="<?=site_url('a_file')?>">file php</a></li>
-  <li><a href="<?=site_url('an_html_file')?>">file html</a></li>
-  <li><a href="<?=site_url('subdir')?>">subdir php</a></li>
-  <li><a href="<?=site_url('subdir2')?>">subdir html</a></li>
+  <li><a href="<?=site_url()?>"<?=evn_active_page()?' class="active"':''?>>main</a></li>
+  <li><a href="<?=site_url('a_file')?>"<?=evn_active_page('a_file')?' class="active"':''?>>file php</a></li>
+  <li><a href="<?=site_url('an_html_file')?>"<?=evn_active_page('an_html_file')?' class="active"':''?>>file html</a></li>
+  <li><a href="<?=site_url('subdir')?>"<?=evn_active_page('subdir')?' class="active"':''?>>subdir php</a>
+  <ul><li><a href="<?=site_url(array('subdir','subfile'))?>"<?=evn_active_page('subfile',1)?' class="active"':''?>>subfile</a></li></ul></li>
+  <li><a href="<?=site_url('subdir2')?>"<?=evn_active_page('subdir2')?' class="active"':''?>>subdir html</a></li>
 </ul>
