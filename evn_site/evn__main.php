@@ -20,6 +20,7 @@ $ext_content=load_content($content);
 </head>
 <body>
 <div id="wrapper">
+<div id="evn_logo"><img src="<?=evn_img_url('evinrude_logo.png')?>" alt="Evinrude" title="Evinrude"></div>
 <h1>Welcome to Evinrude!</h1>
 <div id="left">
 <?$this->load->view('sidebar')?>

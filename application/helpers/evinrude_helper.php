@@ -39,4 +39,9 @@ function get_template_var($placeholder,$default_value='')
   $CI=&get_instance();
   return $CI->evinrude->get_template_var($placeholder,$default_value);
 }
+
+function evn_img_url($img_name)
+{
+  return base_url().'graphic/img/'.$img_name;
+}
 ?>
