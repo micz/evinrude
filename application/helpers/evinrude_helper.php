@@ -57,4 +57,9 @@ function evn_active_page($link_name='',$only_last_level=0)
     return false;
   }
 }
+
+function get_last_mod_date($file,$format="d/m/Y H:i:s")
+{
+  return date($format, filemtime($file));
+}
 ?>
