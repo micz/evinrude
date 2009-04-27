@@ -111,9 +111,9 @@ class Evinrude
     $line_count=count($lines);
     $i=0;
     for($i=0;$i<$line_count;$i++){
-      $current_line=trim($lines[$i]," \r\n\t");
+      $current_line=$lines[$i];
       $equal_sign_pos=strpos($current_line,'=');
-      $var_name=substr($current_line,0,$equal_sign_pos);
+      $var_name=trim(substr($current_line,0,$equal_sign_pos)," \r\n\t");
       $var_value=substr($current_line,$equal_sign_pos+1);
       $this->set_template_var($var_name,$var_value);
     }
