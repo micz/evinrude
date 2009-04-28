@@ -13,4 +13,7 @@
 //Paths are always relative to www/index.php
 $config['evn_site_folder']='./evn_site';
 $config['evn_site_pages_folder']='./evn_site/pages';
+//Caching option: number of minutes before the cache is refreshed.
+//If set equal to 0 the caching is disabled.
+$config['evn_cache_minutes']=0;
 ?>
