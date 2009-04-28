@@ -11,5 +11,6 @@
 */
 
 //Paths are always relative to www/index.php
-$config['evn_site_data_folder']='./evn_site';
+$config['evn_site_folder']='./evn_site';
+$config['evn_site_pages_folder']='./evn_site/pages';
 ?>

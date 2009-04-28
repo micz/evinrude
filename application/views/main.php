@@ -9,5 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-require_once($this->config->item('evn_site_data_folder').'/evn__main.php');
+require_once($this->config->item('evn_site_folder').'/evn__main.php');
 ?>
