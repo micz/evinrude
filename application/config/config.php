@@ -23,7 +23,7 @@ $config['base_url']	= "http://evinrude/";
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
