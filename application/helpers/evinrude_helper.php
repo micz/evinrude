@@ -63,7 +63,7 @@ function get_last_mod_date($file,$format="d/m/Y H:i:s")
   return date($format, filemtime($file));
 }
 
-function tpl_load_master_file($tpl_file)
+function tpl_load_base_file($tpl_file)
 {
   $CI=&get_instance();
   $CI->load->view($tpl_file);
