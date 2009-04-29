@@ -22,7 +22,7 @@ class Main extends Controller {
     $this->view_data['error']=0;
     $this->view_data['content']='';
     $cache_min=$this->config->item('evn_cache_minutes');
-    if($cache_min>0)$this->output->cache($this->config->item($cache_min));
+    if($cache_min>0)$this->output->cache($cache_min);
 	}
 	
 	function _remap()
