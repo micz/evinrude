@@ -50,7 +50,7 @@ class Evinrude
     }
   }
 
-  function load_content($content)
+  function content_preload($content)
   {
     if(strpos($content,'/evn__') === 0){
       //We cannot load directly a template base file

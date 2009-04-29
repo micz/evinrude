@@ -10,7 +10,7 @@
 *
 */
 //Preload the user content, so we can set the needed template vars
-$ext_content=load_content($content);
+$ext_content=content_preload($content);
 ?>
 <html>
 <head>
@@ -30,7 +30,7 @@ if($error){
   tpl_load_error();
 }else{
   //output the user content
-  echo $ext_content;
+  content_publish($ext_content);
 }
 ?></p>
 </div>

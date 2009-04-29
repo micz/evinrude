@@ -10,10 +10,15 @@
 *
 */
 
-function load_content($content)
+function content_preload($content)
 {
   $CI=&get_instance();
-  return $CI->evinrude->load_content($content);
+  return $CI->evinrude->content_preload($content);
+}
+
+function content_publish($content)
+{
+  echo $content;
 }
 
 function get_include_contents($filename)
