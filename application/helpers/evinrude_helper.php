@@ -68,4 +68,19 @@ function tpl_load_base_file($tpl_file)
   $CI=&get_instance();
   $CI->load->view($tpl_file);
 }
+
+function tpl_load_footer()
+{
+  tpl_load_base_file('footer');
+}
+
+function tpl_load_sidebar()
+{
+  tpl_load_base_file('sidebar');
+}
+
+function tpl_load_error()
+{
+  tpl_load_base_file('error');
+}
 ?>

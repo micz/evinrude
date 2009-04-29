@@ -23,11 +23,11 @@ $ext_content=load_content($content);
 <div id="evn_logo"><img src="<?=evn_img_url('evinrude_logo.png')?>" alt="Evinrude" title="Evinrude"></div>
 <h1>Welcome to Evinrude!</h1>
 <div id="left">
-<?tpl_load_base_file('sidebar')?>
+<?tpl_load_sidebar()?>
 </div><div id="main">
 <p><?
 if($error){
-  tpl_load_base_file('error');
+  tpl_load_error();
 }else{
   //output the user content
   echo $ext_content;
@@ -35,7 +35,7 @@ if($error){
 ?></p>
 </div>
 <div id="footer">
-<?tpl_load_base_file('footer');?>
+<?tpl_load_footer();?>
 </div>
 </div>
 </body>
