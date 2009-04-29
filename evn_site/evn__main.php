@@ -14,7 +14,7 @@ $ext_content=load_content($content);
 ?>
 <html>
 <head>
-<title>Welcome to Evinrude<?=get_template_var('title')?></title>
+<title>Welcome to Evinrude!<?=get_template_var('title')?></title>
 <?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>graphic/style.css" media="screen" />
 </head>
