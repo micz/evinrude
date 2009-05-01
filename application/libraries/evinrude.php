@@ -15,7 +15,7 @@ class Evinrude
   private $CI;
   private $template;
   private $version='1.0-alpha';
-  var $basepath;
+  private $basepath;
   var $current_content;
   var $file_last_mod_date;
   
@@ -24,6 +24,7 @@ class Evinrude
     $this->CI=&get_instance();
     $this->template=array();
     $this->current_content='';
+    $this->basepath=$this->CI->config->item('evn_site_pages_folder');
   }
 
   function get_version()

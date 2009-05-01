@@ -17,7 +17,6 @@ class Main extends Controller {
 
   function  __construct() {
 		parent::__construct();
-    $this->evinrude->basepath=$this->config->item('evn_site_pages_folder');
     $this->view_data=array();
     $this->view_data['error']=0;
     $this->view_data['content']='';

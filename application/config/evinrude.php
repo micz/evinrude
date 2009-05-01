@@ -14,7 +14,9 @@
 //Base template files path
 $config['evn_site_folder']='./evn_site';
 //Custom template files path
-$config['evn_site_pages_folder']='./evn_site/pages';
+$config['evn_site_pages_folder']='./evn_site/_pages';
+//Active template
+$config['evn_template']='default';
 //Caching option: number of minutes before the cache is refreshed.
 //If set equal to 0 the caching is disabled.
 $config['evn_cache_minutes']=0;
