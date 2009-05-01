@@ -74,6 +74,11 @@ function tpl_load_base_file($tpl_file)
   $CI->load->view($tpl_file);
 }
 
+function tpl_load_header()
+{
+  tpl_load_base_file('header');
+}
+
 function tpl_load_footer()
 {
   tpl_load_base_file('footer');

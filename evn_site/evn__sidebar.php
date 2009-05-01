@@ -10,6 +10,12 @@
 *
 */
 ?>
+<!-- sidebar START -->
+<div id="sidebar">
+<!-- sidebar north START -->
+<div id="northsidebar" class="sidebar">
+<div class="widget">
+<h3></h3>
 <ul>
   <li><a href="<?=site_url()?>"<?=evn_active_page()?' class="active"':''?>>main</a></li>
   <li><a href="<?=site_url('a_file')?>"<?=evn_active_page('a_file')?' class="active"':''?>>file php</a></li>
@@ -18,3 +24,8 @@
   <ul><li><a href="<?=site_url(array('subdir','subfile'))?>"<?=evn_active_page('subfile',1)?' class="active"':''?>>subfile</a></li></ul></li>
   <li><a href="<?=site_url('subdir2')?>"<?=evn_active_page('subdir2')?' class="active"':''?>>subdir html</a></li>
 </ul>
+</div>
+</div>
+<!-- sidebar north END -->
+</div>
+<!-- sidebar END -->

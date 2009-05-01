@@ -10,5 +10,6 @@
 *
 */
 ?>
+<h2>A php file inside a subdir</h2>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
 <p>You're in a subdir now, and you're reading a file (not index.php!).</p>

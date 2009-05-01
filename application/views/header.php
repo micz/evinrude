@@ -9,20 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+require_once($this->config->item('evn_site_folder').'/evn__header.php');
 ?>
-<!-- footer START -->
-<div id="footer">
-	<a id="gotop" href="#" onclick="goTop(0.5,16);return false;">Top</a>
-	<a id="powered" href="http://code.google.com/p/evinrude/">Evinrude CMS</a>
-	<div id="copyright">
-Powered by <a href="http://code.google.com/p/evinrude/">Evinrude CMS</a> v<?=$this->evinrude->get_version();?><br/>Page rendered in {elapsed_time} seconds</div>
-	<div id="themeinfo">
-		Graphic based on a <a href="http://www.neoease.com/themes/">mg12</a> work</div>
-</div>
-<!-- footer END -->
-</div>
-<!-- container END -->
-</div>
-<!-- wrap END -->
-</body>
-</html>

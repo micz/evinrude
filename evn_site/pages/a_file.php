@@ -11,5 +11,6 @@
 */
 set_template_var('title',' :: This is a php file using template vars!')
 ?>
+<h2>A php file</h2>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
 <?= '<p>I\'m a php file!</p>'?>

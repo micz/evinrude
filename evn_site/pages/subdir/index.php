@@ -10,5 +10,6 @@
 *
 */
 ?>
+<h2>A subdir</h2>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
 <p>You're in a subdir now.</p>

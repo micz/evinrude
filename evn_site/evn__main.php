@@ -10,33 +10,24 @@
 *
 */
 //Preload the user content, so we can set the needed template vars
+/*<img src="<?=evn_img_url('evinrude_logo.png')?>" alt="Evinrude" title="Evinrude">*/
 $ext_content=content_preload($content);
+tpl_load_header();
 ?>
-<html>
-<head>
-<title>Welcome to Evinrude!<?=get_template_var('title')?></title>
-<?=meta('Content-type','text/html; charset=utf-8','equiv');?>
-<link rel="stylesheet" type="text/css" href="<?=base_url()?>graphic/style.css" media="screen" />
-</head>
-<body>
-<div id="wrapper">
-<div id="evn_logo"><img src="<?=evn_img_url('evinrude_logo.png')?>" alt="Evinrude" title="Evinrude"></div>
-<h1>Welcome to Evinrude!</h1>
-<div id="left">
-<?tpl_load_sidebar()?>
-</div><div id="main">
-<p><?
+<!-- content START -->
+<div id="content">
+<!-- main START -->
+<div id="main"><div class="post"><?
 if($error){
   tpl_load_error();
 }else{
-  //output the user content
+  //This outputs the user content
   content_publish($ext_content);
 }
-?></p>
+?></div></div>
+<!-- main END -->
+<?tpl_load_sidebar();?>
+<div class="fixed"></div>
 </div>
-<div id="footer">
+<!-- content END -->
 <?tpl_load_footer();?>
-</div>
-</div>
-</body>
-</html>
