@@ -45,9 +45,10 @@ function get_template_var($placeholder,$default_value='')
   return $CI->evinrude->get_template_var($placeholder,$default_value);
 }
 
-function evn_img_url($img_name)
+function evn_style_url()
 {
-  return base_url().'graphic/img/'.$img_name;
+  $CI=&get_instance();
+  return base_url().'graphic/'.$CI->config->item('evn_template').'/';
 }
 
 function evn_active_page($link_name='',$only_last_level=0)

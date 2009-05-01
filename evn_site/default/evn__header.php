@@ -15,13 +15,13 @@
 <?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>Welcome to Evinrude!<?=get_template_var('title')?></title>
-<link rel="shortcut icon" href="<?=base_url()?>graphic/img/evinrude_icon.png" />
+<link rel="shortcut icon" href="<?=evn_style_url()?>/img/evinrude_icon.png" />
 <!-- style START -->
 <!-- default style -->
-<style type="text/css" media="screen">@import url(<?=base_url()?>graphic/style.css );</style>
+<style type="text/css" media="screen">@import url(<?=evn_style_url()?>style.css );</style>
 <!-- for translations -->
 <!--[if IE]>
-<link rel="stylesheet" href="<?=base_url()?>graphic/ie.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?=evn_style_url()?>/ie.css" type="text/css" media="screen" />
 <![endif]-->
 <!-- style END -->
 <meta name="generator" content="Evinrude CMS <?=$this->evinrude->get_version();?>" />
