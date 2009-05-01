@@ -17,7 +17,7 @@
 	<div id="copyright">
 Powered by <a href="http://code.google.com/p/evinrude/">Evinrude CMS</a> v<?=$this->evinrude->get_version();?><br/>Page rendered in {elapsed_time} seconds</div>
 	<div id="themeinfo">
-		Graphic based on a <a href="http://www.neoease.com/themes/">mg12</a> work</div>
+		Graphic based on a <a href="http://www.neoease.com/themes/" rel="nofollow">mg12</a> work</div>
 </div>
 <!-- footer END -->
 </div>
