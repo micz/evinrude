@@ -53,11 +53,6 @@ class Evinrude
 
   function content_preload($content)
   {
-    if(strpos($content,'/evn__') === 0){
-      //We cannot load directly a template base file
-      $this->CI->load->view('error');
-      return false;
-    }
     if(strlen($content)>0)$this->current_content=substr($content,1);
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
