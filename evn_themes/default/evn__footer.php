@@ -1,4 +1,4 @@
-<? if (!defined('BASEPATH')){ header('Location: /');exit; }
+<? if (!defined('BASEPATH')){ header("HTTP/1.1 301 Moved Permanently"); header('Location: /');exit; }
 /*
 * Copyright 2009 Evinrude
 * This file is part of Evinrude.
