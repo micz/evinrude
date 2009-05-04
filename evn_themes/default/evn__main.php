@@ -1,4 +1,4 @@
-<? if (!defined('BASEPATH')) exit('No direct script access allowed');
+<? if (!defined('BASEPATH')){ header('Location: /');exit; }
 /*
 * Copyright 2009 Evinrude
 * This file is part of Evinrude.

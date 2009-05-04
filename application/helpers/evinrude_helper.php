@@ -45,10 +45,22 @@ function get_template_var($placeholder,$default_value='')
   return $CI->evinrude->get_template_var($placeholder,$default_value);
 }
 
-function evn_style_url()
+function evn_theme_url()
 {
   $CI=&get_instance();
-  return base_url().'graphic/'.$CI->config->item('evn_template').'/';
+  return base_url().$CI->config->item('evn_themes_folder').'/'.$CI->config->item('evn_active_theme').'/';
+}
+
+function evn_style_url()
+{
+  return evn_theme_url().'style.css';
+}
+
+function evn_theme_path()
+{
+  // Path relative to www/index.php
+  $CI=&get_instance();
+  return './'.$CI->config->item('evn_themes_folder').'/'.$CI->config->item('evn_active_theme').'/';
 }
 
 function evn_active_page($link_name='',$only_last_level=0)

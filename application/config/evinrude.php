@@ -10,14 +10,26 @@
 *
 */
 
-//Paths are always relative to www/index.php
-//Base template files path
-$config['evn_site_folder']='./evn_site';
-//Custom template files path
-$config['evn_site_pages_folder']='./evn_site/_pages';
-//Active template
-$config['evn_template']='default';
+//=================================================
+//=======       USER EDITABLE OPTIONS       =======
+//=================================================
+//Active theme name
+$config['evn_active_theme']='default';
 //Caching option: number of minutes before the cache is refreshed.
 //If set equal to 0 the caching is disabled.
+//ATTENTION: system/application folder must be writeable.
 $config['evn_cache_minutes']=0;
+//=================================================
+//=================================================
+
+
+//=================================================
+//=== CHANGE ONLY IF YOU KNOW WHAT YOU'RE DOING ===
+//=================================================
+//Content files path (relative to www/index.php)
+$config['evn_site_pages_folder']='./evn_site/_pages';
+//Themes files folder (must be in document root)
+$config['evn_themes_folder']='evn_themes';
+//=================================================
+//=================================================
 ?>

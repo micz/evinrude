@@ -1,4 +1,4 @@
-<? if (!defined('BASEPATH')) exit('No direct script access allowed');
+<? if (!defined('BASEPATH')){ header('Location: /');exit; }
 /*
 * Copyright 2009 Evinrude
 * This file is part of Evinrude.
@@ -15,17 +15,17 @@
 <?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>Welcome to Evinrude!<?=get_template_var('title')?></title>
-<link rel="shortcut icon" href="<?=evn_style_url()?>/img/evinrude_icon.png" />
+<link rel="shortcut icon" href="<?=evn_theme_url()?>img/evinrude_icon.png" />
 <!-- style START -->
 <!-- default style -->
-<style type="text/css" media="screen">@import url(<?=evn_style_url()?>style.css );</style>
+<style type="text/css" media="screen">@import url(<?=evn_style_url()?>);</style>
 <!-- for translations -->
 <!--[if IE]>
 <link rel="stylesheet" href="<?=evn_style_url()?>/ie.css" type="text/css" media="screen" />
 <![endif]-->
 <!-- style END -->
 <meta name="generator" content="Evinrude CMS <?=$this->evinrude->get_version();?>" />
-<script type="text/javascript" src="<?=base_url()?>js/evn.js"></script>
+<script type="text/javascript" src="<?=evn_theme_url()?>js/evn.js"></script>
 </head>
 <body>
 <!-- wrap START -->

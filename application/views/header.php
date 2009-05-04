@@ -9,5 +9,5 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-require_once($this->config->item('evn_site_folder').'/'.$this->config->item('evn_template').'/evn__header.php');
+require_once(evn_theme_path().'evn__header.php');
 ?>
