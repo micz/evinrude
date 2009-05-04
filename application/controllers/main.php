@@ -24,8 +24,12 @@ class Main extends Controller {
     if($cache_min>0)$this->output->cache($cache_min);
 	}
 	
-	function _remap()
+	function _remap($method)
   {
+    if($method=='error'){
+      $this->$method();
+      return;
+    }
     $this->incoming_path=$this->uri->uri_string();
     $this->index();
   }
@@ -36,7 +40,15 @@ class Main extends Controller {
       $this->view_data['content']=$this->incoming_path;
     }else{
       $this->view_data['error']=1;
+      $this->output->set_status_header('404');
     }
 		$this->load->view('main',$this->view_data);
 	}
+
+  function error()
+  {
+    $this->output->set_status_header('404');
+    $this->view_data['error']=1;
+		$this->load->view('main',$this->view_data);
+  }
 }
