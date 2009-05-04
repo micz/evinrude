@@ -17,7 +17,7 @@
 $config['evn_active_theme']='default';
 //Caching option: number of minutes before the cache is refreshed.
 //If set equal to 0 the caching is disabled.
-//ATTENTION: system/application folder must be writeable.
+//WARNING: system/application folder must be writeable.
 $config['evn_cache_minutes']=0;
 //=================================================
 //=================================================
