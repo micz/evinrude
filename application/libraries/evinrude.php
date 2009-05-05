@@ -53,7 +53,7 @@ class Evinrude
 
   function content_preload($content)
   {
-    if(strlen($content)>0)$this->current_content=substr($content,1);
+    if(strlen($content)>0)$this->current_content=trim($content,'/');
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
       $this->file_last_mod_date=get_last_mod_date($this->basepath.$content.'.php');
