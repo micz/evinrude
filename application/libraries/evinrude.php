@@ -57,25 +57,30 @@ class Evinrude
     if(strlen($content)>0)$this->current_content=trim($content,'/');
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
-      $this->file_last_mod_date=get_last_mod_date($this->basepath.$content.'.php');
+      $this->file_last_mod_date=$this->get_last_mod_date($this->basepath.$content.'.php');
       return get_include_contents($this->basepath.$content.'.php');
     }elseif(file_exists($this->basepath.$content.'.html')){
       //I'm addressing an html file?
-      $this->file_last_mod_date=get_last_mod_date($this->basepath.$content.'.html');
+      $this->file_last_mod_date=$this->get_last_mod_date($this->basepath.$content.'.html');
       //Parse the html file for template vars and translate them to php
       return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'.html'));
     }elseif(file_exists($this->basepath.$content.'/index.php')){
       //I'm addressing a subdir? Check an index.php...
-      $this->file_last_mod_date=get_last_mod_date($this->basepath.$content.'/index.php');
+      $this->file_last_mod_date=$this->get_last_mod_date($this->basepath.$content.'/index.php');
       return get_include_contents($this->basepath.$content.'/index.php');
     }elseif(file_exists($this->basepath.$content.'/index.html')){
       //... or check an index.html (and parse the template vars)
-      $this->file_last_mod_date=get_last_mod_date($this->basepath.$content.'/index.html');
+      $this->file_last_mod_date=$this->get_last_mod_date($this->basepath.$content.'/index.html');
       return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'/index.html'));
     }else{
       //Sorry nothing found
       return false;
     }
+  }
+
+  private function get_last_mod_date($file)
+  {
+    return filemtime($file);
   }
 
   function set_template_var($placeholder,$value)

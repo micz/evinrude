@@ -76,9 +76,10 @@ function evn_active_page($link_name='',$only_last_level=0)
   }
 }
 
-function get_last_mod_date($file,$format="d/m/Y H:i:s")
+function get_content_last_mod_date($format="d/m/Y H:i:s")
 {
-  return date($format, filemtime($file));
+  $CI=&get_instance();
+  return date($format, $CI->evinrude->file_last_mod_date);
 }
 
 function tpl_load_base_file($tpl_file)
