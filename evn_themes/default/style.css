@@ -352,3 +352,4 @@ a#gotop {
 	text-decoration:none;
 }
 /* footer END */
+a.active{font-weight:bold;}
