@@ -26,11 +26,11 @@ class Main extends Controller {
 	
 	function _remap($method)
   {
+    $this->incoming_path=$this->uri->uri_string();
     if($method=='error'){
       $this->$method();
       return;
     }
-    $this->incoming_path=$this->uri->uri_string();
     $this->index();
   }
 	
