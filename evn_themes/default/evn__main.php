@@ -18,7 +18,7 @@ tpl_load_header();
 <div id="content">
 <!-- main START -->
 <div id="main"><div class="post"><?
-if($error){
+if($error||($ext_content==false)){
   tpl_load_error();
 }else{
   //This outputs the user content

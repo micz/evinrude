@@ -53,6 +53,7 @@ class Evinrude
 
   function content_preload($content)
   {
+    //returns false if no content found
     if(strlen($content)>0)$this->current_content=trim($content,'/');
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
@@ -73,7 +74,6 @@ class Evinrude
       return $this->parse_html_template_vars(get_include_contents($this->basepath.$content.'/index.html'));
     }else{
       //Sorry nothing found
-      $this->CI->load->view('error');
       return false;
     }
   }
