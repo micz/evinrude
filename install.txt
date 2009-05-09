@@ -1,0 +1,11 @@
+Evinrude installation instructions.
+
+- Modify the $config['base_url'] value in application/config/config.php line 13
+- Put your site's files in the evn_site/_pages/
+- Modify the default theme in the evn_themes/default/ or add your theme in the evn_themes/<YourThemeName>/ folder
+- If needed modify the $config['evn_active_theme'] value in application/config/evinrude.php line 17 to change the active theme
+- Copy the files on your webserver
+- Your site is ready to go!
+
+
+More info at http://code.google.com/p/evinrude/wiki/Installation
