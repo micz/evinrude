@@ -12,12 +12,19 @@
 
 class Evinrude
 {
+  private $version='1.1-plugins-working';
+  private $plugin_autoload_file='_autoload.php';
+
   private $CI;
   private $template;
-  private $version='1.1-plugins-working';
   private $basepath;
+  private $pluginspath;
+  private $autoload_plugins;
+  private $active_plugins;
+  private $incoming_path;
   var $current_content;
   var $file_last_mod_date;
+  var $plugins_autoloaded;
   
   function  __construct()
   {
@@ -25,6 +32,9 @@ class Evinrude
     $this->template=array();
     $this->current_content='';
     $this->basepath=$this->CI->config->item('evn_site_pages_folder');
+    $this->pluginspath=$this->CI->config->item('evn_site_plugins_folder');
+    $this->autoload_plugins=$this->CI->config->item('evn_autoload_plugins');
+    $this->active_plugins=$this->CI->config->item('evn_active_plugins');
   }
 
   function get_version()
@@ -32,8 +42,14 @@ class Evinrude
     return $this->version;
   }
 
-  function check_incoming_path($path)
+  function set_incoming_path($path)
   {
+    $this->incoming_path=$path;
+  }
+
+  function check_incoming_path($path='')
+  {
+    if($path=='')$path=$this->incoming_path;
     $vroot=realpath($this->basepath);
     $path=$this->basepath.$path;
     $path_php=$path.'.php';
@@ -45,6 +61,7 @@ class Evinrude
       }
     }
     if(substr($real_path,0,strlen($vroot))!=$vroot){
+      $this->incoming_path='';
       return false;
     }else{
       return true;
@@ -75,6 +92,16 @@ class Evinrude
     }else{
       //Sorry nothing found
       return false;
+    }
+  }
+
+  function autoload_plugins()
+  {
+    foreach ($this->autoload_plugins as $autop) {
+      if(file_exists($this->pluginspath.'/'.$autop.'/'.$this->plugin_autoload_file)){
+        include_once($this->pluginspath.'/'.$autop.'/'.$this->plugin_autoload_file);
+        $this->plugins_autoloaded[$autop]=new $autop($this->incoming_path);
+      }
     }
   }
 
@@ -150,6 +177,5 @@ abstract class EvnAutoloadPlugin
 
   abstract public function output();
 }
-
 
 ?>

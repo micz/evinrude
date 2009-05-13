@@ -107,4 +107,10 @@ function tpl_load_error()
 {
   tpl_load_base_file('error');
 }
+
+function plugin_output($plugin_name)
+{
+  $CI=&get_instance();
+  return $CI->evinrude->plugins_autoloaded[$plugin_name]->output();
+}
 ?>

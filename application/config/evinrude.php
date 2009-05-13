@@ -37,7 +37,7 @@ $config['evn_active_plugins']=array();
 //------------------------------------------------=
 //-- Autoloaded plugins
 //Use it this way: $config['evn_autoload_plugins'] = array('myfirstautoloadplugin','asecondautoloadplugin');
-$config['evn_autoload_plugins']=array();
+$config['evn_autoload_plugins']=array('helloworld');
 //------------------------------------------------=
 //------------------------------------------------=
 

@@ -27,6 +27,8 @@ class Main extends Controller {
 	function _remap($method)
   {
     $this->incoming_path=$this->uri->uri_string();
+    $this->evinrude->set_incoming_path($this->incoming_path);
+    $this->evinrude->autoload_plugins();
     if($method=='error'){
       $this->$method();
       return;
@@ -36,7 +38,7 @@ class Main extends Controller {
 	
 	function index()
 	{
-    if($this->evinrude->check_incoming_path($this->incoming_path)){
+    if($this->evinrude->check_incoming_path()){
       $this->view_data['content']=$this->incoming_path;
     }else{
       $this->view_data['error']=1;

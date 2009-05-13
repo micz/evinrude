@@ -320,6 +320,7 @@ blockquote, pre {
 	font-size:11px;
 	line-height:145%;
 	width:100%;
+  position:relative;
 }
 #footer a {
 	color:#2A2A2A;
@@ -351,5 +352,6 @@ a#gotop {
 	margin:5px 8px 0 0;
 	text-decoration:none;
 }
+#autop{float:left;background:#DDD;left:520px;padding:2px;position:absolute;top:15px;}
 /* footer END */
 a.active{font-weight:bold;}
