@@ -126,4 +126,30 @@ class Evinrude
     return $html;
   }
 }
+
+abstract class EvnPlugin
+{
+  protected $incoming_path;
+
+  function  __construct($incoming_path)
+  {
+    $this->incoming_path=$incoming_path;
+  }
+
+  abstract public function activate();
+}
+
+abstract class EvnAutoloadPlugin
+{
+  protected $incoming_path;
+
+  function  __construct($incoming_path)
+  {
+    $this->incoming_path=$incoming_path;
+  }
+
+  abstract public function output();
+}
+
+
 ?>
