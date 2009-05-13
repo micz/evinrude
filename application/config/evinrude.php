@@ -19,6 +19,11 @@ $config['evn_active_theme']='default';
 //If set equal to 0 the caching is disabled.
 //WARNING: system/application folder must be writeable.
 $config['evn_cache_minutes']=0;
+//Active Plugins
+//Plugins are located in the /evn_site/_plugins directory (as defined below)
+//Any plugin is contained in its own directory (named as the plugin name)
+//Use it this way: $config['evn_active_plugins'] = array('myfirstplugin','asecondplugin','thelastplugin');
+$config['evn_active_plugins']=array();
 //=================================================
 //=================================================
 
@@ -26,8 +31,9 @@ $config['evn_cache_minutes']=0;
 //=================================================
 //=== CHANGE ONLY IF YOU KNOW WHAT YOU'RE DOING ===
 //=================================================
-//Content files path (relative to www/index.php)
+//Content and plugins files path (relative to www/index.php)
 $config['evn_site_pages_folder']='./evn_site/_pages';
+$config['evn_site_plugins_folder']='./evn_site/_plugins';
 //Themes files folder (must be in document root)
 $config['evn_themes_folder']='evn_themes';
 //=================================================
