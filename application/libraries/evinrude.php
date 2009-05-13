@@ -14,7 +14,7 @@ class Evinrude
 {
   private $CI;
   private $template;
-  private $version='1.1-working';
+  private $version='1.1-plugins-working';
   private $basepath;
   var $current_content;
   var $file_last_mod_date;
