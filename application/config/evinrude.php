@@ -9,33 +9,48 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-
-//=================================================
-//=======       USER EDITABLE OPTIONS       =======
-//=================================================
-//Active theme name
+//------------------------------------------------=
+//-------       USER EDITABLE OPTIONS       ------=
+//------------------------------------------------=
+//-- Active theme name
 $config['evn_active_theme']='default';
-//Caching option: number of minutes before the cache is refreshed.
+//-- Caching option
+//Number of minutes before the cache is refreshed.
 //If set equal to 0 the caching is disabled.
 //WARNING: system/application folder must be writeable.
 $config['evn_cache_minutes']=0;
-//Active Plugins
+//------------------------------------------------=
+//------------------------------------------------=
+
+
+//------------------------------------------------=
+//-------              PLUGINS               -----=
+//------------------------------------------------=
 //Plugins are located in the /evn_site/_plugins directory (as defined below)
 //Any plugin is contained in its own directory (named as the plugin name)
-//Use it this way: $config['evn_active_plugins'] = array('myfirstplugin','asecondplugin','thelastplugin');
+//More info at http://code.google.com/p/evinrude/wiki/Plugins
+//------------------------------------------------=
+//-- Active Plugins
+//Use it this way: $config['evn_active_plugins'] = array('myfirsturl'=>'myfirstplugin','mysecondurl/pluginsubdir'=>'asecondplugin');
+//In every values pair the first is the path and the second is the plugin name.
 $config['evn_active_plugins']=array();
-//=================================================
-//=================================================
+//------------------------------------------------=
+//-- Autoloaded plugins
+//Use it this way: $config['evn_autoload_plugins'] = array('myfirstautoloadplugin','asecondautoloadplugin');
+$config['evn_autoload_plugins']=array();
+//------------------------------------------------=
+//------------------------------------------------=
 
 
-//=================================================
-//=== CHANGE ONLY IF YOU KNOW WHAT YOU'RE DOING ===
-//=================================================
+
+//------------------------------------------------=
+//--- CHANGE ONLY IF YOU KNOW WHAT YOU'RE DOING --=
+//------------------------------------------------=
 //Content and plugins files path (relative to www/index.php)
 $config['evn_site_pages_folder']='./evn_site/_pages';
 $config['evn_site_plugins_folder']='./evn_site/_plugins';
 //Themes files folder (must be in document root)
 $config['evn_themes_folder']='evn_themes';
-//=================================================
-//=================================================
+//------------------------------------------------=
+//------------------------------------------------=
 ?>
