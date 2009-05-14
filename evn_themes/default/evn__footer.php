@@ -11,7 +11,7 @@
 */
 ?>
 <!-- footer START -->
-<div id="footer"><?=plugin_output('helloworld')?>
+<div id="footer"><?=plugin_execute('helloworld')?>
 	<a id="gotop" href="#" onclick="goTop(0.5,16);return false;">Top</a>
 	<a id="powered" href="http://code.google.com/p/evinrude/">Evinrude CMS</a>
 	<div id="copyright">
