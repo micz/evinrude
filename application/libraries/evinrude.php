@@ -154,25 +154,38 @@ class Evinrude
   }
 }
 
-abstract class EvnPlugin
+abstract class EvnAncestorPlugin
 {
   protected $incoming_path;
+  protected $CI;
 
   function  __construct($incoming_path)
   {
+    $this->CI=&get_instance();
     $this->incoming_path=$incoming_path;
+  }
+
+  public function disable_cache()
+  {
+    $this->CI->output->cache(0);
+  }
+}
+
+abstract class EvnPlugin extends EvnAncestorPlugin
+{
+  function  __construct($incoming_path)
+  {
+    parent::__construct($incoming_path);
   }
 
   abstract public function activate();
 }
 
-abstract class EvnAutoloadPlugin
+abstract class EvnAutoloadPlugin extends EvnAncestorPlugin
 {
-  protected $incoming_path;
-
   function  __construct($incoming_path)
   {
-    $this->incoming_path=$incoming_path;
+    parent::__construct($incoming_path);
   }
 
   abstract public function execute($args=array());
