@@ -175,7 +175,7 @@ abstract class EvnAutoloadPlugin
     $this->incoming_path=$incoming_path;
   }
 
-  abstract public function execute();
+  abstract public function execute($args=array());
 }
 
 ?>

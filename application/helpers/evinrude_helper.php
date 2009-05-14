@@ -108,10 +108,10 @@ function tpl_load_error()
   tpl_load_base_file('error');
 }
 
-function plugin_execute($plugin_name)
+function plugin_execute($plugin_name,$args=array())
 {
-  //outputs the content of an autoloaded plugin, to be used in a views
+  //returns the content of an autoloaded plugin, to be used in a view
   $CI=&get_instance();
-  return $CI->evinrude->plugins_autoloaded[$plugin_name]->execute();
+  return $CI->evinrude->plugins_autoloaded[$plugin_name]->execute($args);
 }
 ?>
