@@ -10,10 +10,11 @@
 *
 */
 
-class helloworld_auto extends EvnAutoloadPlugin{
-  function execute($args=array())
+class helloworld extends EvnPlugin{
+  function activate($args=array())
   {
-    return '<div id="autop">Hello world!! I\'m an autoloaded <a href="http://code.google.com/p/evinrude/wiki/Plugins">plugin</a>!!</div>';
+    set_template_var('title',' :: This is a Demo Plugin!');
+    return '<h2>A Demo Plugin</h2><p>Hello world!! I\'m a <a href="http://code.google.com/p/evinrude/wiki/Plugins">plugin</a> active on the <code>'.$this->incoming_path.'</code> path!!</p>';
   }
 }
 ?>

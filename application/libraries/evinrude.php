@@ -14,6 +14,7 @@ class Evinrude
 {
   private $version='1.1-plugins-working';
   private $plugin_autoload_file='_autoload.php';
+  private $plugin_main_file='main.php';
 
   private $CI;
   private $template;
@@ -25,6 +26,7 @@ class Evinrude
   var $current_content;
   var $file_last_mod_date;
   var $plugins_autoloaded;
+  var $using_plugin;
   
   function  __construct()
   {
@@ -35,6 +37,7 @@ class Evinrude
     $this->pluginspath=$this->CI->config->item('evn_site_plugins_folder');
     $this->autoload_plugins=$this->CI->config->item('evn_autoload_plugins');
     $this->active_plugins=$this->CI->config->item('evn_active_plugins');
+    $this->using_plugin=0;
   }
 
   function get_version()
@@ -70,8 +73,12 @@ class Evinrude
 
   function content_preload($content)
   {
-    //returns false if no content found
-    if(strlen($content)>0)$this->current_content=trim($content,'/');
+    //returns $content if we're using a plugin
+    if($this->using_plugin){
+      $this->file_last_mod_date='';
+      return $content;
+    }
+    $this->current_content=trim($content,'/');
     if(file_exists($this->basepath.$content.'.php')){
       //I'm addressing a php file?
       $this->file_last_mod_date=$this->get_last_mod_date($this->basepath.$content.'.php');
@@ -100,9 +107,31 @@ class Evinrude
     foreach ($this->autoload_plugins as $autop) {
       if(file_exists($this->pluginspath.'/'.$autop.'/'.$this->plugin_autoload_file)){
         include_once($this->pluginspath.'/'.$autop.'/'.$this->plugin_autoload_file);
-        $this->plugins_autoloaded[$autop]=new $autop($this->incoming_path);
+        $autop_name=$autop.'_auto';
+        $this->plugins_autoloaded[$autop]=new $autop_name($this->incoming_path);
       }
     }
+  }
+
+  function load_plugin($plugin_name)
+  {
+    if(file_exists($this->pluginspath.'/'.$plugin_name.'/'.$this->plugin_main_file)){
+        include_once($this->pluginspath.'/'.$plugin_name.'/'.$this->plugin_main_file);
+        $this->using_plugin=1;
+        return new $plugin_name($this->incoming_path);
+    }
+  }
+
+  function check_using_plugin($incoming_path)
+  {
+    $incoming_path=trim($incoming_path,'/');
+    return array_key_exists($incoming_path,$this->active_plugins);
+  }
+
+  function get_plugin_name($incoming_path)
+  {
+    $incoming_path=trim($incoming_path,'/');
+    return $this->active_plugins[$incoming_path];
   }
 
   private function get_last_mod_date($file)
@@ -173,21 +202,11 @@ abstract class EvnAncestorPlugin
 
 abstract class EvnPlugin extends EvnAncestorPlugin
 {
-  function  __construct($incoming_path)
-  {
-    parent::__construct($incoming_path);
-  }
-
   abstract public function activate();
 }
 
 abstract class EvnAutoloadPlugin extends EvnAncestorPlugin
 {
-  function  __construct($incoming_path)
-  {
-    parent::__construct($incoming_path);
-  }
-
   abstract public function execute($args=array());
 }
 

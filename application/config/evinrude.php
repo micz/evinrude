@@ -33,7 +33,7 @@ $config['evn_cache_minutes']=0;
 //-- Active Plugins
 //Use it this way: $config['evn_active_plugins'] = array('myfirsturl'=>'myfirstplugin','mysecondurl/pluginsubdir'=>'asecondplugin');
 //In every values pair the first is the path and the second is the plugin name.
-$config['evn_active_plugins']=array();
+$config['evn_active_plugins']=array('demoplugin'=>'helloworld');
 //------------------------------------------------=
 //-- Autoloaded plugins
 //Use it this way: $config['evn_autoload_plugins'] = array('myfirstautoloadplugin','asecondautoloadplugin');
