@@ -125,7 +125,18 @@ class Evinrude
   function check_using_plugin()
   {
     $incoming_path=trim($this->incoming_path,'/');
-    return array_key_exists($incoming_path,$this->active_plugins);
+    if(array_key_exists($incoming_path,$this->active_plugins)){
+      //A first level deep path found!
+      return true;
+    }/*else{
+      //Look for a partial path (we're calling a subdir of a plugin path)
+      foreach($this->active_plugins as $key => $value){
+        if(strpos($link_name,$current_content)!==false){
+          return true;
+        }
+      }
+    }*/
+    return false;
   }
 
   function get_plugin()
