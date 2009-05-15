@@ -128,10 +128,19 @@ class Evinrude
     return array_key_exists($incoming_path,$this->active_plugins);
   }
 
-  function get_plugin_name($incoming_path)
+  function get_plugin($incoming_path)
   {
     $incoming_path=trim($incoming_path,'/');
     return $this->active_plugins[$incoming_path];
+  }
+
+  function get_autoload_plugin_content($plugin_name,$args=array())
+  {
+    if(is_array($this->plugins_autoloaded)&&array_key_exists($plugin_name,$this->plugins_autoloaded)&&$this->plugins_autoloaded[$plugin_name]!=null){
+      return $this->plugins_autoloaded[$plugin_name]->execute($args);
+    }else{
+      return '';
+    }
   }
 
   private function get_last_mod_date($file)

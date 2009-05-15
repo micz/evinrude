@@ -112,6 +112,6 @@ function plugin_execute($plugin_name,$args=array())
 {
   //returns the content of an autoloaded plugin, to be used in a view
   $CI=&get_instance();
-  return $CI->evinrude->plugins_autoloaded[$plugin_name]->execute($args);
+  return $CI->evinrude->get_autoload_plugin_content($plugin_name,$args);
 }
 ?>
