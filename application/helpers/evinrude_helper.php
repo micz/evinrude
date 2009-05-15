@@ -66,13 +66,16 @@ function evn_theme_path()
 function evn_active_page($link_name='',$only_last_level=0)
 {
   $CI=&get_instance();
-  $content_array=explode('/',$CI->evinrude->current_content);
-  if(!$only_last_level&&(in_array($link_name,$content_array))){
-    return true;
-  }elseif($only_last_level&&($content_array[count($content_array)-1]==$link_name)){
-    return true;
+  if(is_array($link_name)){
+    $link_name=implode('/',$link_name);
+  }
+  $link_name=trim($link_name,'/');
+  $link_name.='/';
+  $current_content=$CI->evinrude->current_content.'/';
+  if($only_last_level||$link_name=='/'||$current_content=='/'){
+    return ($link_name==$current_content);
   }else{
-    return false;
+    return strpos($link_name,$current_content)!==false;
   }
 }
 
