@@ -122,15 +122,15 @@ class Evinrude
     }
   }
 
-  function check_using_plugin($incoming_path)
+  function check_using_plugin()
   {
-    $incoming_path=trim($incoming_path,'/');
+    $incoming_path=trim($this->incoming_path,'/');
     return array_key_exists($incoming_path,$this->active_plugins);
   }
 
-  function get_plugin($incoming_path)
+  function get_plugin()
   {
-    $incoming_path=trim($incoming_path,'/');
+    $incoming_path=trim($this->incoming_path,'/');
     return $this->active_plugins[$incoming_path];
   }
 

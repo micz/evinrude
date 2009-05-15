@@ -30,8 +30,8 @@ class Main extends Controller {
     $this->evinrude->set_incoming_path($this->incoming_path);
     $this->evinrude->autoload_plugins();
     //Check if we have to use a plugin
-    if($this->evinrude->check_using_plugin($this->incoming_path)){
-      $this->plugin($this->evinrude->get_plugin($this->incoming_path));
+    if($this->evinrude->check_using_plugin()){
+      $this->plugin($this->evinrude->get_plugin());
       return;
     }
     if($method=='error'){
