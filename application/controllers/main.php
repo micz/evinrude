@@ -48,6 +48,7 @@ class Main extends Controller {
     }else{
       $this->view_data['error']=1;
       $this->output->set_status_header('404');
+      $this->view_data['content']='error';
     }
 		$this->load->view('main',$this->view_data);
 	}
@@ -60,6 +61,7 @@ class Main extends Controller {
       $this->view_data['content']=$active_plugin->activate();
       $this->load->view('main',$this->view_data);
     }else{
+      $this->view_data['content']='error';
       $this->error();
     }
   }
