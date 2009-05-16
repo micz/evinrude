@@ -23,6 +23,7 @@ class Evinrude
   private $autoload_plugins;
   private $active_plugins;
   private $incoming_path;
+  private $current_plugin;
   var $current_content;
   var $file_last_mod_date;
   var $plugins_autoloaded;
@@ -38,6 +39,7 @@ class Evinrude
     $this->autoload_plugins=$this->CI->config->item('evn_autoload_plugins');
     $this->active_plugins=$this->CI->config->item('evn_active_plugins');
     $this->using_plugin=0;
+    $this->current_plugin='';
   }
 
   function get_version()
@@ -126,21 +128,27 @@ class Evinrude
   {
     $incoming_path=trim($this->incoming_path,'/');
     if(array_key_exists($incoming_path,$this->active_plugins)){
-      //A first level deep path found!
+      //A full path found!
+      $this->current_plugin=$this->active_plugins[$incoming_path];
       return true;
-    }/*else{
+    }else{
       //Look for a partial path (we're calling a subdir of a plugin path)
       foreach($this->active_plugins as $key => $value){
-        if(strpos($link_name,$current_content)!==false){
+        if(strpos($incoming_path,$key)!==false){
+          $this->current_plugin=$value;
           return true;
         }
       }
-    }*/
+    }
+    $this->current_plugin='';
     return false;
   }
 
   function get_plugin()
   {
+    if($this->current_plugin!=''){
+      return $this->current_plugin;
+    }
     $incoming_path=trim($this->incoming_path,'/');
     return $this->active_plugins[$incoming_path];
   }
