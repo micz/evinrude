@@ -213,13 +213,26 @@ class Evinrude
 
 abstract class EvnAncestorPlugin
 {
+  protected $plugin_config_file='config.php';
+
   protected $incoming_path;
+  protected $config;
   protected $CI;
 
   function  __construct($incoming_path)
   {
     $this->CI=&get_instance();
     $this->incoming_path=$incoming_path;
+    $this->config=array();
+  }
+
+  public function load_config()
+  {
+    $plugin_path=$this->get_plugin_path();
+    if(file_exists($plugin_path.$this->plugin_config_file)){
+      include_once($plugin_path.$this->plugin_config_file);
+      $this->config=$config;
+     }
   }
 
   public function disable_cache()
