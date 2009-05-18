@@ -226,6 +226,11 @@ abstract class EvnAncestorPlugin
   {
     $this->CI->output->cache(0);
   }
+
+  public function set_cache($min)
+  {
+    $this->CI->output->cache($min);
+  }
 }
 
 abstract class EvnPlugin extends EvnAncestorPlugin
