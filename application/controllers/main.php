@@ -29,11 +29,6 @@ class Main extends Controller {
     $this->incoming_path=$this->uri->uri_string();
     $this->evinrude->set_incoming_path($this->incoming_path);
     $this->evinrude->autoload_plugins();
-    //Check if we have to use a plugin
-    if($this->evinrude->check_using_plugin()){
-      $this->plugin($this->evinrude->get_plugin());
-      return;
-    }
     if($method=='error'){
       $this->$method();
       return;
@@ -45,10 +40,15 @@ class Main extends Controller {
 	{
     if($this->evinrude->check_incoming_path()){
       $this->view_data['content']=$this->incoming_path;
+    }elseif($this->evinrude->check_using_plugin()){
+     //Check if we have to use a plugin
+       $this->plugin($this->evinrude->get_plugin());
+       return;
     }else{
       $this->view_data['error']=1;
       $this->output->set_status_header('404');
       $this->view_data['content']='error';
+      $this->incoming_path='';
     }
 		$this->load->view('main',$this->view_data);
 	}
@@ -62,6 +62,7 @@ class Main extends Controller {
       $this->load->view('main',$this->view_data);
     }else{
       $this->view_data['content']='error';
+      $this->incoming_path='';
       $this->error();
     }
   }

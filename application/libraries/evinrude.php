@@ -66,7 +66,6 @@ class Evinrude
       }
     }
     if(substr($real_path,0,strlen($vroot))!=$vroot){
-      $this->incoming_path='';
       return false;
     }else{
       return true;
