@@ -231,6 +231,11 @@ abstract class EvnAncestorPlugin
   {
     $this->CI->output->cache($min);
   }
+
+  public function get_plugin_path()
+  {
+    return $this->CI->config->item('evn_site_plugins_folder').'/'.get_class($this).'/';
+  }
 }
 
 abstract class EvnPlugin extends EvnAncestorPlugin
@@ -241,6 +246,13 @@ abstract class EvnPlugin extends EvnAncestorPlugin
 abstract class EvnAutoloadPlugin extends EvnAncestorPlugin
 {
   abstract public function execute($args=array());
+
+  public function get_plugin_path()
+  {
+    $real_path=parent::get_plugin_path();
+    // Strips the '_auto' from the name
+    return substr($real_path,0,strlen($real_path)-6).'/';
+  }
 }
 
 ?>
