@@ -133,7 +133,8 @@ class Evinrude
     }else{
       //Look for a partial path (we're calling a subdir of a plugin path)
       foreach($this->active_plugins as $key => $value){
-        if(strpos($incoming_path,$key)!==false){
+        $cpos=strpos($incoming_path,$key.'/');
+        if(($cpos!==false)&&($cpos==0)){
           $this->current_plugin=$value;
           return true;
         }
