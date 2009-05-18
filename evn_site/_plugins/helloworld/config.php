@@ -10,12 +10,5 @@
 *
 */
 
-class helloworld extends EvnPlugin{
-  function activate()
-  {
-    $this->load_config();
-    set_template_var('title',' :: This is a Demo Plugin!');
-    return '<h2>A Demo Plugin</h2><p>Hello world!!<br/>I\'m a <a href="http://code.google.com/p/evinrude/wiki/Plugins">plugin</a> activated on the <code>'.$this->incoming_path.'</code> path!!<br/><br/>'.$this->config['test_config'].'</p>';
-  }
-}
+$config['test_config']='<i>This string is stored in the plugin config file!</i>';
 ?>
