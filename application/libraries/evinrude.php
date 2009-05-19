@@ -249,6 +249,12 @@ abstract class EvnAncestorPlugin
   {
     return $this->CI->config->item('evn_site_plugins_folder').'/'.get_class($this).'/';
   }
+
+  protected function get_uri_elements()
+  {
+    $inc_segs=$this->CI->uri->segment_array();
+    return array_slice($inc_segs,1);
+  }
 }
 
 abstract class EvnPlugin extends EvnAncestorPlugin
