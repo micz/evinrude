@@ -14,7 +14,6 @@ class events extends EvnPlugin{
 
   function  __construct($incoming_path) {
     parent::__construct($incoming_path);
-    $this->CI->load->helper('file');
     $this->load_config();
   }
   
@@ -26,24 +25,27 @@ class events extends EvnPlugin{
     }else{  //Calling a single event
       if($datafile=$this->get_datafile_from_permalink($args[0])){
         return $datafile;
-      }else{
+      }else{  //Nothing found
         return $this->config['lang']['event_not_found'];
       }
     }
   }
 
-  function show_main_page()
+  private function show_main_page()
   {
-    return 'This will be the events plugin main page.';
+    $out_buffer='';
     //Get next events info
-
+    $out_buffer.='<h2>'.$this->config['title_next'].'</h2>';
+    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/');
     //Get past events info
-    
+    $out_buffer.='<h2>'.$this->config['title_past'].'</h2>';
+    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/');
+    return $out_buffer;
   }
 
-  function get_datafile_from_permalink($permalink)
+  private function get_datafile_from_permalink($permalink)
   {
-    if($permadata=read_file($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
+    if($permadata=@file_get_contents($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
       $permadata=str_replace("\r\n","\n",$permadata)."\n";
       $startp=strpos($permadata,$permalink.'::')+strlen($permalink.'::');
       $filename=trim(substr($permadata,$startp,strpos($permadata, "\n",$startp))," \n\r\t");
@@ -63,30 +65,43 @@ class events extends EvnPlugin{
     }
   }
 
-  function move_datafile_to_past()
-  {//To be implemented
+  private function move_datafile_to_past()
+  {//Moves an event file from the next folder to the past folder if needed
+   //TO BE IMPLEMENTED
 
   }
 
-  function parse_datafile($datafile_path)
+  private function parse_datafile($datafile_path)
   {
-    if($output=read_file($datafile_path)){
-      //To be implemented
+    if($output=@file_get_contents($datafile_path)){
+      //TO BE IMPLEMENTED
       return $output;
     }else{
       return false;
     }
   }
 
-  function get_past_events_path()
+  private function get_past_events_path()
   {
     return $this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/';
   }
 
-  function get_next_events_path()
+  private function get_next_events_path()
   {
     return $this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/';
   }
 
+  private function get_folder_files_content($folder_path)
+  {
+    if(!is_dir($folder_path))return false;
+    $out_buffer='';
+    if($dh=opendir($folder_path)){
+      while(($file=readdir($dh))!==false){
+          $out_buffer.=$this->parse_datafile($folder_path.$file);
+      }
+      closedir($dh);
+    }
+    return $out_buffer;
+  }
 }
 ?>

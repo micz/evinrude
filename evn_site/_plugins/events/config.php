@@ -16,6 +16,8 @@ $config['past_events_folder']='past';
 $config['permalink_index_file']='permalink.txt';
 $config['title_main']='Events';
 $config['title_separator']=' :: ';
+$config['title_next']='Next Events';
+$config['title_past']='Past Events';
 
 // Lang definitions
 $config['lang']['event_not_found']='Sorry, the requested event is not present in the archive.'
