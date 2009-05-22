@@ -117,4 +117,14 @@ function plugin_execute($plugin_name,$args=array())
   $CI=&get_instance();
   return $CI->evinrude->get_autoload_plugin_content($plugin_name,$args);
 }
+
+function include_jquery()
+{
+  return '<script type="text/javascript" src="'.base_url().'js/jquery.js"></script><script type="text/javascript">var uajx=\''.base_url().'ajax\';</script>';
+}
+
+function plugin_ajax_link($anchor,$plugin_name,$plugin_type='',$args=array())
+{
+  return '<a href="javascript:pajx(\''.$plugin_name.'\',\''.$plugin_type.'\',\''.serialize($args).'\');">'.$anchor.'</a>';
+}
 ?>

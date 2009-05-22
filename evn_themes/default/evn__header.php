@@ -16,6 +16,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>Welcome to Evinrude!<?=get_template_var('title')?></title>
 <link rel="shortcut icon" href="<?=evn_theme_url()?>img/evinrude_icon.png" />
+<?=include_jquery()?>
 <!-- style START -->
 <!-- default style -->
 <style type="text/css" media="screen">@import url(<?=evn_style_url()?>);</style>

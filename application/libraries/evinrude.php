@@ -225,6 +225,11 @@ abstract class EvnAncestorPlugin
     $this->incoming_path=$incoming_path;
     $this->config=array();
   }
+  
+  public function ajax($args=array())
+  {
+    return '';
+  }
 
   public function load_config()
   {
@@ -245,9 +250,14 @@ abstract class EvnAncestorPlugin
     $this->CI->output->cache($min);
   }
 
+  public function get_name()
+  {
+    return get_class($this);
+  }
+
   public function get_plugin_path()
   {
-    return $this->CI->config->item('evn_site_plugins_folder').'/'.get_class($this).'/';
+    return $this->CI->config->item('evn_site_plugins_folder').'/'.$this->get_name().'/';
   }
 
   protected function get_uri_elements()

@@ -32,6 +32,9 @@ class Main extends Controller {
     if($method=='error'){
       $this->$method();
       return;
+    }elseif($method=='ajax'){
+      $this->ajax();
+      return;
     }
     $this->index();
   }
@@ -65,6 +68,29 @@ class Main extends Controller {
       $this->incoming_path='';
       $this->error();
     }
+  }
+  
+  function ajax()
+  {
+    $out_buffer='';
+    if(!$plugin_name=$this->input->post('pn')){
+      $this->output->set_output($out_buffer);
+      return;
+    }
+    if(!$plugin_type=$this->input->post('pt')){
+      $plugin_type='';
+    }
+    if($ser_args=$this->input->post('args')){
+      $plugin_args=unserialize($ser_args);
+    }else{
+      $plugin_args=array();
+    }
+    if($plugin_type=='auto'){
+      $plugin_name.='_auto';
+    }
+    $active_plugin=&$this->evinrude->load_plugin($plugin_name);
+    $out_buffer=$active_plugin->ajax($plugin_args);
+    $this->output->set_output($out_buffer);
   }
 
   function error()
