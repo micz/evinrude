@@ -14,7 +14,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?=meta('Content-type','text/html; charset=utf-8','equiv');?>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>Welcome to Evinrude!<?=get_template_var('title')?></title>
+<title>Welcome to Evinrude!<?=get_template_var('title_separator').get_template_var('title')?></title>
 <link rel="shortcut icon" href="<?=evn_theme_url()?>img/evinrude_icon.png" />
 <?=include_jquery()?>
 <!-- style START -->

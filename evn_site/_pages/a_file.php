@@ -9,7 +9,8 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-set_template_var('title',' :: This is a php file using template vars!')
+set_template_var('title','This is a php file using template vars!');
+set_template_var('title_separator',' :: ');
 ?>
 <h2>A php file</h2>
 <p>Hello world, I'm Evinrude, a small but powerful CMS!</p>
