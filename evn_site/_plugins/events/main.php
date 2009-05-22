@@ -33,6 +33,8 @@ class events extends EvnPlugin{
 
   private function show_main_page()
   {
+    set_template_var('title',$this->config['page_title_main']);
+    set_template_var('title_separator',$this->config['page_title_separator']);
     $out_buffer='';
     //Get next events info
     $out_buffer.='<h2>'.$this->config['title_next'].'</h2>';
@@ -74,8 +76,24 @@ class events extends EvnPlugin{
   private function parse_datafile($datafile_path)
   {
     if($output=@file_get_contents($datafile_path)){
-      //TO BE IMPLEMENTED
-      return $output;
+      $elements_value=array();
+      foreach($this->config['element_tags'] as $tag){
+        $start_tag='<evn:'.$tag.'>';
+        $end_tag='</evn:'.$tag.'>';
+        $start_tag_pos=strpos($output,$start_tag)+strlen($start_tag);
+        //No starting tag? Go to the next tag
+        if($start_tag_pos===false) break;
+        $end_tag_pos=strpos($output,$end_tag,$start_tag_pos);
+        //No ending tag? It's better to do nothing, so go to the next tag
+        if($end_tag_pos===false) break;
+        $elements_value[$tag]=substr($output,$start_tag_pos,$end_tag_pos-$start_tag_pos);
+      }
+      $output_buffer='<h3>'.arr_el('title',$elements_value).'</h3>
+        <p><b>'.arr_el('date',$elements_value).'<br/>
+        '.arr_el('location',$elements_value).'</b></p><p>
+        </p><p>'.arr_el('desc',$elements_value).'</p>
+        <p><a href="'.arr_el('dl_link',$elements_value).'" title="'.$this->config['download_title_text'].'"> '.$this->config['download_anchor_text'].'</a>';
+      return $output_buffer;
     }else{
       return false;
     }
@@ -97,7 +115,13 @@ class events extends EvnPlugin{
     $out_buffer='';
     if($dh=opendir($folder_path)){
       while(($file=readdir($dh))!==false){
-          $out_buffer.=$this->parse_datafile($folder_path.$file);
+        $parts=explode('.',$file);                // pull apart the name and dissect by period
+        if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
+          $extension = end($parts);               // set to we can see last file extension
+          if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
+             $out_buffer.=$this->parse_datafile($folder_path.$file);
+          }
+        }
       }
       closedir($dh);
     }

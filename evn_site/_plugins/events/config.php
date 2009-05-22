@@ -10,14 +10,24 @@
 *
 */
 // General plugin configuration
+// Files and Dirs
 $config['data_folder']='data';
 $config['next_events_folder']='next';
 $config['past_events_folder']='past';
 $config['permalink_index_file']='permalink.txt';
-$config['title_main']='Events';
-$config['title_separator']=' :: ';
+
+// HTML elements
+$config['page_title_main']='Events';
+$config['page_title_separator']=' :: ';
 $config['title_next']='Next Events';
 $config['title_past']='Past Events';
+$config['title_abstract']='Events';
+$config['download_icon_url']='';
+$config['download_anchor_text']='Download the brochure';
+$config['download_title_text']='Download the brochure';
+
+//Various
+$config['element_tags']=array('title','dl_link','date','location','desc');
 
 // Lang definitions
 $config['lang']['event_not_found']='Sorry, the requested event is not present in the archive.'

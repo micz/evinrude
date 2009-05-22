@@ -127,4 +127,13 @@ function plugin_ajax_link($anchor,$plugin_name,$plugin_type='',$args=array())
 {
   return '<a href="javascript:pajx(\''.$plugin_name.'\',\''.$plugin_type.'\',\''.serialize($args).'\');">'.$anchor.'</a>';
 }
+
+// Returns an array element if the key is present
+function arr_el($item,$array,$default=false)
+{
+  if(!isset($array[$item])||$array[$item]==''){
+    return $default;
+  }
+  return $array[$item];
+}	
 ?>

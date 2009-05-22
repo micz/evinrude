@@ -1,1 +1,5 @@
-test event
+<evn:title>test past event</evn:title>
+<evn:dl_link> </evn:dl_link>
+<evn:date>09 May 2009</evn:date>
+<evn:location>Home Sweet Home</evn:location>
+<evn:desc>You know...</evn:desc>
