@@ -36,25 +36,26 @@ class events extends EvnPlugin{
     set_template_var('title',$this->config['page_title_main']);
     set_template_var('title_separator',$this->config['page_title_separator']);
     $out_buffer='';
+    $permalinks=$this->load_permalinks();
     //Get next events info
     $out_buffer.='<h2>'.$this->config['title_next'].'</h2>';
-    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/');
+    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/',$permalinks);
     //Get past events info
     $out_buffer.='<h2>'.$this->config['title_past'].'</h2>';
-    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/');
+    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/',$permalinks);
     return $out_buffer;
   }
 
   private function get_datafile_from_permalink($permalink)
-  {
+  {echo $this->base_path;
     if($permadata=@file_get_contents($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
       $permadata=str_replace("\r","\n",$permadata)."\n";
       $startp=strpos($permadata,'::'.$permalink.'::')+strlen('::'.$permalink.'::');
       $filename=trim(substr($permadata,$startp,strpos($permadata,"\n",$startp)-$startp)," \n\r\t");
       if($filename!=''){
-        if($output=$this->get_event_html($this->get_past_events_path().$filename)){
+        if($output=$this->get_event_html($this->get_past_events_path().$filename,$permalink)){
           return $output;
-        }elseif($output=$this->get_event_html($this->get_next_events_path().$filename)){
+        }elseif($output=$this->get_event_html($this->get_next_events_path().$filename,$permalink)){
           return $output;
         }else{
           return false;
@@ -67,15 +68,31 @@ class events extends EvnPlugin{
     }
   }
 
+  private function load_permalinks()
+  {
+    $perma_array=array();
+    if($permadata=@file($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
+      foreach ($permadata as $line_num => $line){
+        $line=trim(substr($line,2),"\r\n ");
+        $line_data=explode('::',$line);
+        $perma_array[$line_data[1]]=$line_data[0];
+      }
+      return $perma_array;
+    }else{
+      return false;
+    }
+  }
+
   private function move_datafile_to_past()
   {//Moves an event file from the next folder to the past folder if needed
    //TO BE IMPLEMENTED
 
   }
 
-  private function get_event_html($datafile_path)
+  private function get_event_html($datafile_path,$permalink)
   {
     if($elements_value=$this->CI->evinrude->parse_datafile($datafile_path,$this->config['element_tags'])){
+      $elements_value['item_permalink']=$permalink;
       $output_buffer=$this->get_template($this->get_plugin_path().$this->config['template_folder'].'/event.php',$elements_value);
       return $output_buffer;
     }else{
@@ -93,7 +110,7 @@ class events extends EvnPlugin{
     return $this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/';
   }
 
-  private function get_folder_files_content($folder_path)
+  private function get_folder_files_content($folder_path,$permalinks)
   {
     if(!is_dir($folder_path))return false;
     $out_buffer='';
@@ -103,7 +120,7 @@ class events extends EvnPlugin{
         if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
           $extension = end($parts);               // set to we can see last file extension
           if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
-             $out_buffer.=$this->get_event_html($folder_path.$file);
+             $out_buffer.=$this->get_event_html($folder_path.$file,$permalinks[$file]);
           }
         }
       }
