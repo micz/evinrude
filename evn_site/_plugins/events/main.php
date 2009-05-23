@@ -48,9 +48,9 @@ class events extends EvnPlugin{
   private function get_datafile_from_permalink($permalink)
   {
     if($permadata=@file_get_contents($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
-      $permadata=str_replace("\r\n","\n",$permadata)."\n";
-      $startp=strpos($permadata,$permalink.'::')+strlen($permalink.'::');
-      $filename=trim(substr($permadata,$startp,strpos($permadata, "\n",$startp))," \n\r\t");
+      $permadata=str_replace("\r","\n",$permadata)."\n";
+      $startp=strpos($permadata,'::'.$permalink.'::')+strlen('::'.$permalink.'::');
+      $filename=trim(substr($permadata,$startp,strpos($permadata,"\n",$startp)-$startp)," \n\r\t");
       if($filename!=''){
         if($output=$this->get_event_html($this->get_past_events_path().$filename)){
           return $output;
