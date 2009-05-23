@@ -38,11 +38,18 @@ class events extends EvnPlugin{
     $out_buffer='';
     $permalinks=$this->load_permalinks();
     //Get next events info
-    $out_buffer.='<h2>'.$this->config['title_next'].'</h2>';
-    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/',$permalinks);
+    $next_buffer=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/',$permalinks);
+    if(($next_buffer!='')&&($next_buffer!=false)){
+      $out_buffer.='<h2>'.$this->config['title_next'].'</h2>'.$next_buffer;
+    }
     //Get past events info
-    $out_buffer.='<h2>'.$this->config['title_past'].'</h2>';
-    $out_buffer.=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/',$permalinks);
+    $past_buffer=$this->get_folder_files_content($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/',$permalinks);
+    if(($past_buffer!='')&&($past_buffer!=false)){
+      $out_buffer.='<h2>'.$this->config['title_past'].'</h2>'.$past_buffer;
+    }
+    if($out_buffer==''){  //No events!
+      $out_buffer=$this->config['lang']['no_events'];
+    }
     return $out_buffer;
   }
 

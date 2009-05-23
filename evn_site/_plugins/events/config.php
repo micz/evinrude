@@ -31,5 +31,6 @@ $config['download_title_text']='Download the brochure';
 $config['element_tags']=array('title','dl_link','date','location','desc');
 
 // Lang definitions
-$config['lang']['event_not_found']='Sorry, the requested event is not present in the archive.'
+$config['lang']['event_not_found']='Sorry, the requested event is not present in the archive.';
+$config['lang']['no_events']='The are no events in the archive.';
 ?>
