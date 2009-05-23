@@ -15,6 +15,7 @@ $config['data_folder']='data';
 $config['next_events_folder']='next';
 $config['past_events_folder']='past';
 $config['permalink_index_file']='permalink.txt';
+$config['template_folder']='tpl';
 
 // HTML elements
 $config['page_title_main']='Events';

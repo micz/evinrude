@@ -76,11 +76,7 @@ class events extends EvnPlugin{
   private function get_event_html($datafile_path)
   {
     if($elements_value=$this->CI->evinrude->parse_datafile($datafile_path,$this->config['element_tags'])){
-      $output_buffer='<h3>'.arr_el('title',$elements_value).'</h3>
-        <p><b>'.arr_el('date',$elements_value).'<br/>
-        '.arr_el('location',$elements_value).'</b></p><p>
-        </p><p>'.arr_el('desc',$elements_value).'</p>
-        <p><a href="'.arr_el('dl_link',$elements_value).'" title="'.$this->config['download_title_text'].'"> '.$this->config['download_anchor_text'].'</a>';
+      $output_buffer=$this->get_template($this->get_plugin_path().$this->config['template_folder'].'/event.php',$elements_value);
       return $output_buffer;
     }else{
       return false;
