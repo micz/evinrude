@@ -144,6 +144,7 @@ class Evinrude
     return false;
   }
 
+  // Returns the name of the current active plugin
   function get_plugin()
   {
     if($this->current_plugin!=''){
@@ -162,6 +163,7 @@ class Evinrude
     }
   }
 
+  // Returns the modification date of a content file
   private function get_last_mod_date($file)
   {
     return filemtime($file);
@@ -210,6 +212,11 @@ class Evinrude
     return $html;
   }
 
+  /* Returns an array of values from a datafile
+  *  A datafile is a file that contains only <evn:varname></evn:varname> tags
+  *  Where varname is the name of a given variables
+  *  The array has the varname as a key and anything between the tags as a value
+  */
   public function parse_datafile($datafile_path,$element_tags)
   {
      if($output=@file_get_contents($datafile_path)){
@@ -232,6 +239,8 @@ class Evinrude
   }
 }
 
+// The plugins common ancestor class
+// More info on plugins here: http://code.google.com/p/evinrude/wiki/PluginsDev
 abstract class EvnAncestorPlugin
 {
   protected $plugin_config_file='config.php';
@@ -259,6 +268,8 @@ abstract class EvnAncestorPlugin
     return '';
   }
 
+  // Loads the plugin configuration file, if present
+  // More info here: http://code.google.com/p/evinrude/wiki/PluginsConfig
   public function load_config()
   {
     $plugin_path=$this->get_plugin_path();
@@ -288,12 +299,16 @@ abstract class EvnAncestorPlugin
     return $this->CI->config->item('evn_site_plugins_folder').'/'.$this->get_name().'/';
   }
 
+  // Returns an array of the uri elements, without the plugin base_path
   protected function get_uri_elements()
   {
     $inc_segs=$this->CI->uri->segment_array();
     return array_slice($inc_segs,1);
   }
 
+  /* Loads a template for the plugin, located in $tpl_path
+  *  It passes $tpl_data as the template data array
+  */
   protected function get_template($tpl_path,$tpl_data=array())
   {
     extract($tpl_data);
@@ -308,11 +323,13 @@ abstract class EvnAncestorPlugin
   }
 }
 
+// The normal plugins abstract class
 abstract class EvnPlugin extends EvnAncestorPlugin
 {
   abstract public function activate();
 }
 
+// The autoloaded plugins abstract class
 abstract class EvnAutoloadPlugin extends EvnAncestorPlugin
 {
   abstract public function execute($args=array());
