@@ -237,6 +237,7 @@ abstract class EvnAncestorPlugin
   protected $plugin_config_file='config.php';
 
   protected $incoming_path;
+  protected $base_path;
   protected $config;
   protected $CI;
 
@@ -244,6 +245,8 @@ abstract class EvnAncestorPlugin
   {
     $this->CI=&get_instance();
     $this->incoming_path=$incoming_path;
+    $inc_segs=$this->CI->uri->segment_array();
+    $this->base_path=$inc_segs[1];
     $this->config=array();
   }
   
