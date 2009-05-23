@@ -209,6 +209,27 @@ class Evinrude
     }
     return $html;
   }
+
+  public function parse_datafile($datafile_path,$element_tags)
+  {
+     if($output=@file_get_contents($datafile_path)){
+      $elements_value=array();
+      foreach($element_tags as $tag){
+        $start_tag='<evn:'.$tag.'>';
+        $end_tag='</evn:'.$tag.'>';
+        $start_tag_pos=strpos($output,$start_tag)+strlen($start_tag);
+        //No starting tag? Go to the next tag
+        if($start_tag_pos===false) break;
+        $end_tag_pos=strpos($output,$end_tag,$start_tag_pos);
+        //No ending tag? It's better to do nothing, so go to the next tag
+        if($end_tag_pos===false) break;
+        $elements_value[$tag]=substr($output,$start_tag_pos,$end_tag_pos-$start_tag_pos);
+      }
+      return $elements_value;
+     }else{
+       return false;
+     }
+  }
 }
 
 abstract class EvnAncestorPlugin

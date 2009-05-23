@@ -52,9 +52,9 @@ class events extends EvnPlugin{
       $startp=strpos($permadata,$permalink.'::')+strlen($permalink.'::');
       $filename=trim(substr($permadata,$startp,strpos($permadata, "\n",$startp))," \n\r\t");
       if($filename!=''){
-        if($output=$this->parse_datafile($this->get_past_events_path().$filename)){
+        if($output=$this->get_event_html($this->get_past_events_path().$filename)){
           return $output;
-        }elseif($output=$this->parse_datafile($this->get_next_events_path().$filename)){
+        }elseif($output=$this->get_event_html($this->get_next_events_path().$filename)){
           return $output;
         }else{
           return false;
@@ -73,21 +73,9 @@ class events extends EvnPlugin{
 
   }
 
-  private function parse_datafile($datafile_path)
+  private function get_event_html($datafile_path)
   {
-    if($output=@file_get_contents($datafile_path)){
-      $elements_value=array();
-      foreach($this->config['element_tags'] as $tag){
-        $start_tag='<evn:'.$tag.'>';
-        $end_tag='</evn:'.$tag.'>';
-        $start_tag_pos=strpos($output,$start_tag)+strlen($start_tag);
-        //No starting tag? Go to the next tag
-        if($start_tag_pos===false) break;
-        $end_tag_pos=strpos($output,$end_tag,$start_tag_pos);
-        //No ending tag? It's better to do nothing, so go to the next tag
-        if($end_tag_pos===false) break;
-        $elements_value[$tag]=substr($output,$start_tag_pos,$end_tag_pos-$start_tag_pos);
-      }
+    if($elements_value=$this->CI->evinrude->parse_datafile($datafile_path,$this->config['element_tags'])){
       $output_buffer='<h3>'.arr_el('title',$elements_value).'</h3>
         <p><b>'.arr_el('date',$elements_value).'<br/>
         '.arr_el('location',$elements_value).'</b></p><p>
@@ -119,7 +107,7 @@ class events extends EvnPlugin{
         if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
           $extension = end($parts);               // set to we can see last file extension
           if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
-             $out_buffer.=$this->parse_datafile($folder_path.$file);
+             $out_buffer.=$this->get_event_html($folder_path.$file);
           }
         }
       }
