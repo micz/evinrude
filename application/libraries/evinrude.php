@@ -246,7 +246,11 @@ abstract class EvnAncestorPlugin
     $this->CI=&get_instance();
     $this->incoming_path=$incoming_path;
     $inc_segs=$this->CI->uri->segment_array();
-    $this->base_path=$inc_segs[1];
+    if(count($inc_segs)>0){
+      $this->base_path=$inc_segs[1];
+    }else{
+      $this->base_path='';
+    }
     $this->config=array();
   }
   

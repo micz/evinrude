@@ -55,7 +55,7 @@ class events extends EvnPlugin{
   }
 
   private function get_datafile_from_permalink($permalink)
-  {echo $this->base_path;
+  {
     if($permadata=@file_get_contents($this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['permalink_index_file'])){
       $permadata=str_replace("\r","\n",$permadata)."\n";
       $startp=strpos($permadata,'::'.$permalink.'::')+strlen('::'.$permalink.'::');
