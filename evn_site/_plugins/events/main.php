@@ -121,17 +121,14 @@ class events extends EvnPlugin{
   {
     if(!is_dir($folder_path))return false;
     $out_buffer='';
-    if($dh=opendir($folder_path)){
-      while(($file=readdir($dh))!==false){
-        $parts=explode('.',$file);                // pull apart the name and dissect by period
-        if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
-          $extension = end($parts);               // set to we can see last file extension
-          if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
-             $out_buffer.=$this->get_event_html($folder_path.$file,$permalinks[$file]);
-          }
+    foreach(array_diff(scandir($folder_path),array('.','..')) as $file){
+      $parts=explode('.',$file);                // pull apart the name and dissect by period
+      if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
+        $extension = end($parts);               // set to we can see last file extension
+        if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
+           $out_buffer.=$this->get_event_html($folder_path.$file,$permalinks[$file]);
         }
       }
-      closedir($dh);
     }
     return $out_buffer;
   }
