@@ -286,6 +286,19 @@ abstract class EvnAncestorPlugin
     $inc_segs=$this->CI->uri->segment_array();
     return array_slice($inc_segs,1);
   }
+
+  protected function get_template($tpl_path,$tpl_data=array())
+  {
+    extract($tpl_data);
+    if(is_file($tpl_path)){
+      ob_start();
+      @include($tpl_path);
+      $contents=ob_get_contents();
+      ob_end_clean();
+      return $contents;
+    }
+    return false;
+  }
 }
 
 abstract class EvnPlugin extends EvnAncestorPlugin
