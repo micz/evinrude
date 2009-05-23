@@ -163,6 +163,11 @@ class Evinrude
     }
   }
 
+  function get_active_plugins()
+  {
+    return $this->active_plugins;
+  }
+
   // Returns the modification date of a content file
   private function get_last_mod_date($file)
   {
@@ -246,7 +251,6 @@ abstract class EvnAncestorPlugin
   protected $plugin_config_file='config.php';
 
   protected $incoming_path;
-  protected $base_path;
   protected $config;
   protected $CI;
 
@@ -255,11 +259,6 @@ abstract class EvnAncestorPlugin
     $this->CI=&get_instance();
     $this->incoming_path=$incoming_path;
     $inc_segs=$this->CI->uri->segment_array();
-    if(count($inc_segs)>0){
-      $this->base_path=$inc_segs[1];
-    }else{
-      $this->base_path='';
-    }
     $this->config=array();
   }
   
@@ -299,11 +298,11 @@ abstract class EvnAncestorPlugin
     return $this->CI->config->item('evn_site_plugins_folder').'/'.$this->get_name().'/';
   }
 
-  // Returns an array of the uri elements, without the plugin base_path
+  // Returns an array of the uri elements
+  // More info on segment_array here: http://codeigniter.com/user_guide/libraries/uri.html
   protected function get_uri_elements()
   {
-    $inc_segs=$this->CI->uri->segment_array();
-    return array_slice($inc_segs,1);
+   return $this->CI->uri->segment_array();
   }
 
   /* Loads a template for the plugin, located in $tpl_path
@@ -326,6 +325,27 @@ abstract class EvnAncestorPlugin
 // The normal plugins abstract class
 abstract class EvnPlugin extends EvnAncestorPlugin
 {
+  private $base_path;
+
+  function  __construct($incoming_path) {
+    parent::__construct($incoming_path);
+    $this->base_path=array_search($this->get_name(),$this->CI->evinrude->get_active_plugins());
+  }
+
+  // Returns an array of the uri elements, without the plugin base_path
+  protected function get_uri_elements()
+  {
+    $inc_segs=$this->CI->uri->segment_array();
+    // Remove the $base_path
+    $imploded_uri=implode('/',$inc_segs);
+    if(strpos($imploded_uri,$this->base_path)!==false){
+      $inc_segs=explode('/',trim(substr($imploded_uri,strlen($this->base_path)),' /'));
+    }else{
+      $inc_segs=array();
+    }
+    return $inc_segs;
+  }
+
   abstract public function activate();
 }
 
