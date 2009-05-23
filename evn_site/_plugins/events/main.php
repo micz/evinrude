@@ -33,6 +33,7 @@ class events extends EvnPlugin{
 
   private function show_main_page()
   {
+    $this->move_datafile_to_past();
     set_template_var('title',$this->config['page_title_main']);
     set_template_var('title_separator',$this->config['page_title_separator']);
     $out_buffer='';
@@ -92,8 +93,25 @@ class events extends EvnPlugin{
 
   private function move_datafile_to_past()
   {//Moves an event file from the next folder to the past folder if needed
-   //TO BE IMPLEMENTED
-
+    $next_folder=$this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['next_events_folder'].'/';
+    $past_folder=$this->get_plugin_path().$this->config['data_folder'].'/'.$this->config['past_events_folder'].'/';
+    $current_time=time();
+    foreach(array_diff(scandir($next_folder),array('.','..')) as $file){
+      $parts=explode('.',$file);                // pull apart the name and dissect by period
+      if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
+        $extension = end($parts);               // set to we can see last file extension
+        if($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
+          $file_time=mktime(0,0,0,substr($file,4,2),substr($file,6,2)+1,substr($file,0,4));
+          if($file_time<$current_time){
+            @unlink($past_folder.$file);
+            @rename($next_folder.$file,$past_folder.$file);
+          }else{
+            return;
+          }
+        }
+      }
+    }
+    return;
   }
 
   private function get_event_html($datafile_path,$permalink)
@@ -125,7 +143,7 @@ class events extends EvnPlugin{
       $parts=explode('.',$file);                // pull apart the name and dissect by period
       if(is_array($parts)&&count($parts)>1){    // does the dissected array have more than one part
         $extension = end($parts);               // set to we can see last file extension
-        if ($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
+        if($extension == "txt" OR $extension == "TXT"){    // is extension ext or EXT ?
            $out_buffer.=$this->get_event_html($folder_path.$file,$permalinks[$file]);
         }
       }
