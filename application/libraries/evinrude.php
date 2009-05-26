@@ -335,10 +335,9 @@ abstract class EvnPlugin extends EvnAncestorPlugin
   // Returns an array of the uri elements, without the plugin base_path
   protected function get_uri_elements()
   {
-    $inc_segs=$this->CI->uri->segment_array();
     // Remove the $base_path
-    $imploded_uri=implode('/',$inc_segs);
-    if(strpos($imploded_uri,$this->base_path)!==false){
+    $imploded_uri=trim($this->incoming_path,'/');
+    if(($imploded_uri!=$this->base_path)&&(strpos($imploded_uri,$this->base_path)!==false)){
       $inc_segs=explode('/',trim(substr($imploded_uri,strlen($this->base_path)),' /'));
     }else{
       $inc_segs=array();
