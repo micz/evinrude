@@ -248,11 +248,13 @@ class Evinrude
 // More info on plugins here: http://code.google.com/p/evinrude/wiki/PluginsDev
 abstract class EvnAncestorPlugin
 {
-  protected $plugin_config_file='config.php';
+  protected $plugin_config_file='_config.php';
+  protected $plugin_util_file='_util.php';
 
   protected $incoming_path;
   protected $config;
   protected $CI;
+  protected $util;
 
   function  __construct($incoming_path)
   {
@@ -260,6 +262,12 @@ abstract class EvnAncestorPlugin
     $this->incoming_path=$incoming_path;
     $inc_segs=$this->CI->uri->segment_array();
     $this->config=array();
+    $plugin_utils_path=$this->get_plugin_path().$this->plugin_util_file;
+    if(file_exists($plugin_utils_path)){
+      include_once($plugin_utils_path);
+      $plugin_util_name=$this->get_common_name().'_util';
+      $this->util=new $plugin_util_name($this);
+     }
   }
   
   public function ajax($args=array())
@@ -271,9 +279,9 @@ abstract class EvnAncestorPlugin
   // More info here: http://code.google.com/p/evinrude/wiki/PluginsConfig
   public function load_config()
   {
-    $plugin_path=$this->get_plugin_path();
-    if(file_exists($plugin_path.$this->plugin_config_file)){
-      include_once($plugin_path.$this->plugin_config_file);
+    $plugin_config_path=$this->get_plugin_path().$this->plugin_config_file;
+    if(file_exists($plugin_config_path)){
+      include_once($plugin_config_path);
       $this->config=$config;
      }
   }
@@ -288,7 +296,14 @@ abstract class EvnAncestorPlugin
     $this->CI->output->cache($min);
   }
 
+  //returns the real class name
   public function get_name()
+  {
+    return get_class($this);
+  }
+
+  //returns the class name without the "auto" (overrided in EvnAutoloadPlugins)
+  public function get_common_name()
   {
     return get_class($this);
   }
@@ -359,6 +374,19 @@ abstract class EvnAutoloadPlugin extends EvnAncestorPlugin
     // Strips the '_auto' from the name
     return substr($real_path,0,strlen($real_path)-6).'/';
   }
+
+  public function get_common_name()
+  {
+    return substr(get_class($this),0,strlen(get_class($this))-5);
+  }
 }
 
+abstract class EvnPluginUtil
+{
+  protected $caller;
+
+  function  __construct($my_caller) {
+    $this->caller=$my_caller;
+  }
+}
 ?>
