@@ -61,9 +61,9 @@ class events extends EvnPlugin{
       $startp=strpos($permadata,'::'.$permalink.'::')+strlen('::'.$permalink.'::');
       $filename=trim(substr($permadata,$startp,strpos($permadata,"\n",$startp)-$startp)," \n\r\t");
       if($filename!=''){
-        if($output=$this->get_event_html($this->get_past_events_path().$filename,$permalink)){
+        if($output=$this->get_event_html($this->get_past_events_path().$filename,$permalink,1)){
           return $output;
-        }elseif($output=$this->get_event_html($this->get_next_events_path().$filename,$permalink)){
+        }elseif($output=$this->get_event_html($this->get_next_events_path().$filename,$permalink,1)){
           return $output;
         }else{
           return false;
@@ -114,11 +114,16 @@ class events extends EvnPlugin{
     return;
   }
 
-  private function get_event_html($datafile_path,$permalink)
+  private function get_event_html($datafile_path,$permalink,$single=0)
   {
     if($elements_value=$this->CI->evinrude->parse_datafile($datafile_path,$this->config['element_tags'])){
       $elements_value['item_permalink']=$permalink;
-      $output_buffer=$this->get_template($this->get_plugin_path().$this->config['template_folder'].'/event.php',$elements_value);
+      if($single){
+        $tpl_file='event_single.php';
+      }else{
+        $tpl_file='event_for_list.php';
+      }
+      $output_buffer=$this->get_template($this->get_plugin_path().$this->config['template_folder'].'/'.$tpl_file,$elements_value);
       return $output_buffer;
     }else{
       return false;

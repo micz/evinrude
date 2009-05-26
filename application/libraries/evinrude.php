@@ -325,7 +325,7 @@ abstract class EvnAncestorPlugin
 // The normal plugins abstract class
 abstract class EvnPlugin extends EvnAncestorPlugin
 {
-  private $base_path;
+  protected $base_path;
 
   function  __construct($incoming_path) {
     parent::__construct($incoming_path);
@@ -335,7 +335,7 @@ abstract class EvnPlugin extends EvnAncestorPlugin
   // Returns an array of the uri elements, without the plugin base_path
   protected function get_uri_elements()
   {
-    // Remove the $base_path
+    // Remove the $base_path from the uri elements
     $imploded_uri=trim($this->incoming_path,'/');
     if(($imploded_uri!=$this->base_path)&&(strpos($imploded_uri,$this->base_path)!==false)){
       $inc_segs=explode('/',trim(substr($imploded_uri,strlen($this->base_path)),' /'));

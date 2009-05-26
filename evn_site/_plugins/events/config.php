@@ -33,4 +33,5 @@ $config['element_tags']=array('title','dl_link','date','location','desc');
 // Lang definitions
 $config['lang']['event_not_found']='Sorry, the requested event is not present in the archive.';
 $config['lang']['no_events']='The are no events in the archive.';
+$config['lang']['all_events']='See all events';
 ?>
