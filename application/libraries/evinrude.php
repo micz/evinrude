@@ -273,7 +273,7 @@ abstract class EvnAncestorPlugin
     if(file_exists($plugin_utils_path)){
       include_once($plugin_utils_path);
       $plugin_util_name=$this->get_common_name().'_util';
-      $this->util=new $plugin_util_name(&$this);
+      $this->util=new $plugin_util_name($this);
      }
   }
   
@@ -392,7 +392,7 @@ abstract class EvnPluginUtil
 {
   protected $caller;
 
-  function  __construct($my_caller) {
+  function  __construct(&$my_caller) {
     $this->caller=$my_caller;
   }
 }
