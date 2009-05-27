@@ -16,7 +16,7 @@ class helloworld extends EvnPlugin{
     $this->load_config();
     set_template_var('title','This is a Demo Plugin!');
     set_template_var('title_separator',' :: ');
-    return '<h2>A Demo Plugin</h2><p>Hello world!!<br/>I\'m a <a href="http://code.google.com/p/evinrude/wiki/Plugins">plugin</a> activated on the <code>'.$this->incoming_path.'</code> path!!<br/><br/>'.$this->config['test_config'].'<br/><br/>I have also ajax capabilites: <span id="testme">'.plugin_ajax_link('test me',$this->get_name()).'!</span></p>
+    return '<h2>A Demo Plugin</h2><p>Hello world!!<br/>I\'m a <a href="http://code.google.com/p/evinrude/wiki/Plugins">plugin</a> activated on the <code>'.$this->incoming_path.'</code> path!!<br/><br/>'.$this->config['test_config'].'<br/><br/>I have also ajax capabilites: <span id="testme">'.plugin_ajax_link('test me',$this->get_common_name()).'!</span></p>
 <p><br/><i>'.$this->util->common_function().'</i></p>';
   }
 

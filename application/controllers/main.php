@@ -85,10 +85,7 @@ class Main extends Controller {
     }else{
       $plugin_args=array();
     }
-    if($plugin_type=='auto'){
-      $plugin_name.='_auto';
-    }
-    $active_plugin=&$this->evinrude->load_plugin($plugin_name);
+    $active_plugin=&$this->evinrude->load_plugin($plugin_name,$plugin_type=='auto');
     $out_buffer=$active_plugin->ajax($plugin_args);
     $this->output->set_output($out_buffer);
   }

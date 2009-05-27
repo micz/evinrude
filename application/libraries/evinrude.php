@@ -114,10 +114,17 @@ class Evinrude
     }
   }
 
-  function load_plugin($plugin_name)
+  function load_plugin($plugin_name,$auto=0)
   {
-    if(file_exists($this->pluginspath.'/'.$plugin_name.'/'.$this->plugin_main_file)){
-        include_once($this->pluginspath.'/'.$plugin_name.'/'.$this->plugin_main_file);
+    $plugin_file_name=$plugin_name;
+    if(!$auto){
+      $plugin_file=$this->plugin_main_file;
+    }else{
+      $plugin_file=$this->plugin_autoload_file;
+      $plugin_name.='_auto';
+    }
+    if(file_exists($this->pluginspath.'/'.$plugin_file_name.'/'.$plugin_file)){
+        include_once($this->pluginspath.'/'.$plugin_file_name.'/'.$plugin_file);
         $this->using_plugin=1;
         return new $plugin_name($this->incoming_path);
     }
