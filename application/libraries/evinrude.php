@@ -393,7 +393,7 @@ abstract class EvnPluginUtil
   protected $caller;
 
   function  __construct(&$my_caller) {
-    $this->caller=$my_caller;
+    $this->caller=&$my_caller;
   }
 }
 ?>
