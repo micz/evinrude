@@ -12,7 +12,7 @@
 
 class Evinrude
 {
-  private $version='1.2dev';
+  private $version='1.2-admin-working';
   private $plugin_autoload_file='_autoload.php';
   private $plugin_main_file='main.php';
 
