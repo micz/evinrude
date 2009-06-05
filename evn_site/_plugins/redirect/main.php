@@ -9,6 +9,14 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+/*
+Plugin Name: Redirect
+Plugin URI: http://code.google.com/p/evinrude/wiki/Plugin_Redirect
+Description: Lets set a redirect URL for a given path.
+Version: 1.0
+Author: Mic
+Author URI: http://micz.it/
+*/
 
 class redirect extends EvnPlugin{
 

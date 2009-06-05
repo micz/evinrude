@@ -9,6 +9,14 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+/*
+Plugin Name: Helloworld
+Plugin URI: http://code.google.com/p/evinrude/
+Description: A demo plugin that uses all the Evinrude plugins' features.
+Version: 1.0
+Author: Mic
+Author URI: http://micz.it/
+*/
 
 class helloworld extends EvnPlugin{
   function activate()

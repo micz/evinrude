@@ -9,6 +9,14 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+/*
+Plugin Name: Events
+Plugin URI: http://code.google.com/p/evinrude/wiki/Plugin_Events
+Description: Adds events managing capabilities.
+Version: 1.0
+Author: Mic
+Author URI: http://micz.it/
+*/
 
 class events extends EvnPlugin{
 
