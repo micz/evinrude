@@ -1,5 +1,5 @@
 <evn:title>test next event</evn:title>
 <evn:dl_link>/download/file.pdf</evn:dl_link>
-<evn:date>09 June 2009</evn:date>
+<evn:date>09 June 2010</evn:date>
 <evn:location>Dagobah</evn:location>
 <evn:desc>Enjoy our planet!</evn:desc>
