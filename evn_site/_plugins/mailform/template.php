@@ -13,17 +13,19 @@
 <h1><?= $this->config['lang']['form_title']?></h1>
 <?if($is_sent){
     if(!$is_sent_error){
-      ?><div><?= $this->config['lang']['form_sent_msg']?></div><?
+      ?><div class="mf_error_msg"><?= $this->config['lang']['form_sent_msg']?></div><?
     }else{
-      ?><div><?= $this->config['lang']['form_sent_msg_error']?></div><?
+      ?><div class="mf_error_msg"><?= $this->config['lang']['form_sent_msg_error']?></div><?
     }
 }
 if($is_sent_mandatory_error!=''){?>
- <div><?= $is_sent_mandatory_error?></div>
+ <div class="mf_error_msg"><?= $is_sent_mandatory_error?></div>
 <?}?>
+<div class="mf_form">
 <form name="evnmailform" method="POST" action="<?=$this->CI->uri->uri_string()?>">
   <input type="hidden" value="1" id="form_sent" name="form_sent"/>
   <?=$form?>
   <input type="submit" value="<?=$this->config['lang']['btnsend']?>" name="btnsend" id="btnsend"/>
 </form>
-<div><?= $this->config['lang']['mandatory_note']?></div>
+</div>
+<div class="mf_footer_msg"><?= $this->config['lang']['mandatory_note']?></div>
