@@ -1,0 +1,3 @@
+Name::uname::text::0
+Mail::umail::text::1
+Message::message::textarea::1
