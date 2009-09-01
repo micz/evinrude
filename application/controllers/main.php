@@ -99,4 +99,11 @@ class Main extends CI_Controller
         $this->load->view('main', $this->view_data);
     }
 
+  function admin()
+  {
+    $evnadm=new EvnAdmin($this->incoming_path);
+    $this->view_data=array_merge($evnadm->get_view_data(),$this->view_data);
+    $this->load->vars($this->view_data);
+		$this->load->view('admin/main');
+  }
 }

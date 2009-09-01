@@ -69,6 +69,13 @@ function evn_theme_path()
   return './'.$CI->config->item('evn_themes_folder').$CI->config->item('evn_active_theme').'/';
 }
 
+function evn_admin_theme_path()
+{
+  // Path relative to www/index.php
+  $CI=&get_instance();
+  return './'.$CI->config->item('evn_themes_folder').'/'.$CI->config->item('evn_active_admin_theme').'/';
+}
+
 function evn_active_page($link_name='',$only_last_level=0)
 {
   $CI=&get_instance();
@@ -107,9 +114,9 @@ function tpl_load_footer()
   tpl_load_base_file('footer');
 }
 
-function tpl_load_sidebar()
+function tpl_load_sidebar($admin=0)
 {
-  tpl_load_base_file('sidebar');
+  tpl_load_base_file($admin?'admin/sidebar':'sidebar');
 }
 
 function tpl_load_error()

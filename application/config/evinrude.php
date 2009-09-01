@@ -53,6 +53,8 @@ $config['evn_site_plugins_folder']='./evn_site/_plugins/';
 $config['evn_themes_folder']='evn_themes/';
 //Admin Dashboard url path
 $config['evn_admin_path']='admin';
+//-- Active Admin theme name
+$config['evn_active_admin_theme']='_admin';
 //------------------------------------------------=
 //------------------------------------------------=
 ?>

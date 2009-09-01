@@ -407,16 +407,38 @@ class EvnAdmin
   private $admin_base_path;
   private $uri_segments;
   private $CI;
+  private $view_data;
 
-  function  __construct($incoming_path) {
+  function  __construct($incoming_path)
+  {
     $this->CI=&get_instance();
     $this->admin_base_path=$this->CI->config->item('evn_admin_path');
     $incoming_path=trim($incoming_path,'/');
     $this->uri_segments=explode('/',trim(substr($incoming_path,strlen($this->admin_base_path)),' /'));
+    $this->view_data=array();
+    $this->view_data['content_view']=$this->get_view();
   }
 
-  public function get_subsection(){
+  public function get_section()
+  {
     return $this->uri_segments[0];
+  }
+
+  public function get_view()
+  {
+    if($this->uri_segments[0]==''){
+      return 'admin/default';
+    }else{
+      return 'admin/'.$this->uri_segments[0];
+    }
+  }
+
+  public function get_view_data()
+  {
+    if(count($this->uri_segments)>1){
+      $this->view_data['args']=array_slice($this->uri_segments,1);
+    }
+    return $this->view_data;
   }
 }
 ?>

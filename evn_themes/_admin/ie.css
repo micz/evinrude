@@ -1,0 +1,8 @@
+pre {
+	word-wrap:break-word; /* Internet Explorer 5.5+ */
+}
+a span, 
+#submitbox #submit, 
+#searchbox .button {
+	cursor:hand;
+}

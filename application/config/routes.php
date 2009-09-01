@@ -40,10 +40,10 @@
 |
 */
 
-$route['default_controller'] = "main";
-$route['scaffolding_trigger'] = "";
+$route['default_controller'] = 'main';
+$route['scaffolding_trigger'] = '';
 
-$route['(.*)'] = "main/$1";
+$route['(.*)'] = 'main/$1';
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
