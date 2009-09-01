@@ -51,6 +51,8 @@ $config['evn_site_pages_folder']='./evn_site/_pages/';
 $config['evn_site_plugins_folder']='./evn_site/_plugins/';
 //Themes files folder (must be in document root)
 $config['evn_themes_folder']='evn_themes/';
+//Admin Dashboard url path
+$config['evn_admin_path']='admin';
 //------------------------------------------------=
 //------------------------------------------------=
 ?>

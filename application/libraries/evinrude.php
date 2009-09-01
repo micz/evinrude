@@ -401,4 +401,22 @@ abstract class EvnPluginUtil
     $this->caller=&$my_caller;
   }
 }
+
+class EvnAdmin
+{
+  private $admin_base_path;
+  private $uri_segments;
+  private $CI;
+
+  function  __construct($incoming_path) {
+    $this->CI=&get_instance();
+    $this->admin_base_path=$this->CI->config->item('evn_admin_path');
+    $incoming_path=trim($incoming_path,'/');
+    $this->uri_segments=explode('/',trim(substr($incoming_path,strlen($this->admin_base_path)),' /'));
+  }
+
+  public function get_subsection(){
+    return $this->uri_segments[0];
+  }
+}
 ?>
