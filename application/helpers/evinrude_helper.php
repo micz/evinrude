@@ -21,6 +21,12 @@ function content_publish($content)
   echo $content;
 }
 
+function sidebar_content()
+{
+ $CI=&get_instance();
+ include($CI->config->item('evn_site_pages_folder').'/_sidebar.php');
+}
+
 function get_include_contents($filename)
 {
   if(is_file($filename)){
