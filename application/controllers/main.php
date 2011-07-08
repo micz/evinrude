@@ -10,7 +10,7 @@
 *
 */
 
-class Main extends Controller {
+class Main extends CI_Controller {
 
   private $view_data;
   private $incoming_path;
