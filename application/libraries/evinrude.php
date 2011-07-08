@@ -317,7 +317,7 @@ abstract class EvnAncestorPlugin
 
   public function get_plugin_path()
   {
-    return $this->CI->config->item('evn_site_plugins_folder').'/'.$this->get_name().'/';
+    return $this->CI->config->item('evn_site_plugins_folder').$this->get_name().'/';
   }
 
   // Returns an array of the uri elements
