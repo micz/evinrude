@@ -9,9 +9,6 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
-//Preload the user content, so we can set the needed template vars
-/*<img src="<?=evn_img_url('evinrude_logo.png')?>" alt="Evinrude" title="Evinrude">*/
-$ext_content=content_preload($content);
 tpl_load_header();
 ?>
 <!-- content START -->

@@ -9,5 +9,7 @@
 * Contact Mic at m [at] micz [dot] it
 *
 */
+//Preload the user content, so we can set the needed template vars
+$ext_content=content_preload($content);
 require_once(evn_theme_path().'evn__main.php');
 ?>
