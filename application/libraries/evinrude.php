@@ -1,6 +1,6 @@
 <? if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
-* Copyright 2009 Evinrude
+* Copyright 2011 Evinrude
 * This file is part of Evinrude.
 * Evinrude is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Evinrude is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -32,6 +32,11 @@ class Evinrude
   function  __construct()
   {
     $this->CI=&get_instance();
+    //== fix folders' paths ==
+    $this->CI->config->set_item('evn_site_pages_folder',fix_folders_trailing_slash($this->CI->config->item('evn_site_pages_folder')));
+    $this->CI->config->set_item('evn_site_plugins_folder',fix_folders_trailing_slash($this->CI->config->item('evn_site_plugins_folder')));
+    $this->CI->config->set_item('evn_themes_folder',fix_folders_trailing_slash($this->CI->config->item('evn_themes_folder')));
+    //===============
     $this->template=array();
     $this->current_content='';
     $this->basepath=$this->CI->config->item('evn_site_pages_folder');

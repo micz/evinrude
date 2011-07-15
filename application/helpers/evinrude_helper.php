@@ -1,6 +1,6 @@
 <? if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
-* Copyright 2009 Evinrude
+* Copyright 2011 Evinrude
 * This file is part of Evinrude.
 * Evinrude is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Evinrude is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -24,7 +24,7 @@ function content_publish($content)
 function sidebar_content()
 {
  $CI=&get_instance();
- include($CI->config->item('evn_site_pages_folder').'/_sidebar.php');
+ include($CI->config->item('evn_site_pages_folder').'_sidebar.php');
 }
 
 function get_include_contents($filename)
@@ -54,7 +54,7 @@ function get_template_var($placeholder,$default_value='')
 function evn_theme_url()
 {
   $CI=&get_instance();
-  return base_url().$CI->config->item('evn_themes_folder').'/'.$CI->config->item('evn_active_theme').'/';
+  return base_url().$CI->config->item('evn_themes_folder').$CI->config->item('evn_active_theme').'/';
 }
 
 function evn_style_url()
@@ -66,7 +66,7 @@ function evn_theme_path()
 {
   // Path relative to www/index.php
   $CI=&get_instance();
-  return './'.$CI->config->item('evn_themes_folder').'/'.$CI->config->item('evn_active_theme').'/';
+  return './'.$CI->config->item('evn_themes_folder').$CI->config->item('evn_active_theme').'/';
 }
 
 function evn_active_page($link_name='',$only_last_level=0)
@@ -141,5 +141,10 @@ function arr_el($item,$array,$default=false)
     return $default;
   }
   return $array[$item];
-}	
+}
+
+function fix_folders_trailing_slash($folder_path)
+{
+    return rtrim($folder_path,' /').'/';
+}
 ?>
