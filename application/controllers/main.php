@@ -31,11 +31,8 @@ class Main extends CI_Controller
         $this->incoming_path = $this->uri->uri_string();
         $this->evinrude->set_incoming_path($this->incoming_path);
         $this->evinrude->autoload_plugins();
-        if ($method == 'error') {
+        if (in_array($method, array('error', 'ajax', 'admin'))) {
             $this->$method();
-            return;
-        } elseif ($method == 'ajax') {
-            $this->ajax();
             return;
         }
         $this->index();
