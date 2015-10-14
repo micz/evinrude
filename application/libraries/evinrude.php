@@ -1,6 +1,6 @@
 <? if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
-* Copyright 2011 Evinrude
+* Copyright 2011 - 2015 Evinrude
 * This file is part of Evinrude.
 * Evinrude is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Evinrude is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -12,7 +12,7 @@
 
 class Evinrude
 {
-  private $version='1.2dev';
+  private $version='1.1.1dev';
   private $plugin_autoload_file='_autoload.php';
   private $plugin_main_file='main.php';
 
@@ -28,7 +28,7 @@ class Evinrude
   var $file_last_mod_date;
   var $plugins_autoloaded;
   var $using_plugin;
-  
+
   function  __construct()
   {
     $this->CI=&get_instance();
@@ -281,7 +281,7 @@ abstract class EvnAncestorPlugin
       $this->util=new $plugin_util_name($this);
      }
   }
-  
+
   public function ajax($args=array())
   {
     return '';
