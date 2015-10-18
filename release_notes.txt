@@ -1,6 +1,9 @@
 -= Evinrude CMS =-
 
 ==========
+Version 1.2 - ??/??/2015
+-
+==========
 Version 1.1.1 - 18/05/2015
 - CodeIgniter updated to version 2.2.5.
 - jQuery updated to version 2.1.4.
