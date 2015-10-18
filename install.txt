@@ -8,4 +8,4 @@ Evinrude installation instructions.
 - Your site is ready to go!
 
 
-More info at http://code.google.com/p/evinrude/wiki/Installation
+More info at https://github.com/micz/evinrude/wiki/Installation
