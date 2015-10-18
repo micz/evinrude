@@ -1,6 +1,6 @@
 <? if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
-* Copyright 2011 Evinrude
+* Copyright 2011 - 2015 Evinrude
 * This file is part of Evinrude.
 * Evinrude is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 * Evinrude is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -126,7 +126,9 @@ function plugin_execute($plugin_name,$args=array())
 
 function include_jquery()
 {
-  return '<script type="text/javascript" src="'.base_url().'js/jquery.js"></script><script type="text/javascript">var uajx=\''.base_url().'ajax\';</script>';
+  return '<script type="text/javascript" src="'.base_url().'js/jquery.min.js"></script>
+  <script type="text/javascript" src="'.base_url().'js/evinrude.js"></script>
+  <script type="text/javascript">var uajx=\''.base_url().'ajax\';</script>';
 }
 
 function plugin_ajax_link($anchor,$plugin_name,$plugin_type='',$args=array())
