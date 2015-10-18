@@ -1,0 +1,14 @@
+-= Evinrude CMS =-
+
+==========
+Version 1.2 - ??/??/2015
+- CodeIgniter updated to version 2.2.5.
+- jQuery updated to version 2.1.4.
+==========
+Version 1.1 - 05/06/2009
+- Added plugin support.
+- Minor bugfixes.
+==========
+Version 1.0 - 05/05/2009
+- First release.
+==========
